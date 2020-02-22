@@ -1,0 +1,36 @@
+/**
+ * @author: 殷鹏飞
+ * @Date: 2019-12-27 09:51:54
+ * @information: 登录页面
+ */
+#login {
+    // 表单
+    .login-box {
+        border: 1px solid #DCDFE6;
+        width: 600px;
+        margin: 150px auto;
+        padding: 70px 70px 55px;
+        border-radius: 5px;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        box-shadow: 0 0 20px #9ca1aa;
+    }
+    // 标题区域
+    .login-title-box {
+        // 标题
+        .login-title {
+            text-align: center;
+            margin: 0 auto 40px 70px;
+            font-size: 28px;
+            color: #303133;
+        }
+        // 登录注册提示信息
+        .login-info {
+            padding-bottom: 20px;
+        }
+    }
+    // 按钮盒子
+    .btn-box {
+        text-align: center;
+    }
+}

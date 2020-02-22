@@ -1,0 +1,36 @@
+/*
+ * @author: 殷鹏飞
+ * @Date: 2019-12-27 16:18:55
+ * @information: 主页面
+ */
+#home-page {
+    // 顶部区域
+    .header {
+        width: 1200px;
+        margin: 10px auto;
+        display: flex;
+        justify-content: space-between;
+        img {
+            width: 50px;
+        }
+        .title-info {
+            display: flex;
+            .top-title {
+                margin-left: 10px;
+                font-size: 28px;
+                font-weight: 600;
+                line-height: 51px;
+            }
+        }
+    }
+
+    // 主体区域
+    .body {
+        background-color: #eee;
+        .main-container {
+            width: 1200px;
+            margin: 0 auto;
+        }
+    }
+
+}
