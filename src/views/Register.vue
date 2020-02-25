@@ -20,7 +20,7 @@
                 <el-input   type="text" 
                             maxlength="12"
                             prefix-icon="el-icon-user"
-                            placeholder="请输入账号" 
+                            placeholder="请输入名称" 
                             v-model="form.username"/>
             </el-form-item>
             <!-- 密码 -->

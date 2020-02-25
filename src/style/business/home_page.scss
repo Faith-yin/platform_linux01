@@ -22,13 +22,20 @@
                 line-height: 51px;
             }
         }
+        // 右侧下拉菜单
+        .el-dropdown {
+          .el-dropdown-link {
+            color: #409EFF;
+            line-height: 51.5px;
+            cursor: pointer;
+          }
+        }
     }
 
     // 主体区域
     .body {
-        background-color: #eee;
         .main-container {
-            width: 1200px;
+            width: 1000px;
             margin: 0 auto;
         }
     }

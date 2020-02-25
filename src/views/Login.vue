@@ -20,7 +20,7 @@
                 <el-input   type="text" 
                             maxlength="12"
                             prefix-icon="el-icon-user"
-                            placeholder="请输入账号" 
+                            placeholder="请输入名称" 
                             v-model="form.username"/>
             </el-form-item>
             <!-- 密码 -->
@@ -90,6 +90,7 @@ export default {
             // 为表单绑定验证功能
             this.$refs.loginForm.validate((valid) => {
                 if (valid) {
+                    this.$message.success('登录成功')
                     this.routeGo({name: 'HomePage'})
                 }
             });

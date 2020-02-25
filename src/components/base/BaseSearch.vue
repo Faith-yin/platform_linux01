@@ -5,7 +5,7 @@
 -->
 <template>
     <div id="base-search">
-        <el-input   placeholder="课程资源"
+        <el-input   placeholder="搜索感兴趣的资源"
                     prefix-icon="el-icon-search"
                     size="medium"
                     v-model="searchValue">

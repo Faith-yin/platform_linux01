@@ -12,6 +12,7 @@ import ElementUi from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import vueInit from '@/vue_init.js'
 import './style/index.scss'
+import moment from 'moment'
 
 
 import Vuex from 'vuex'

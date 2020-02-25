@@ -1,3 +1,8 @@
+/*
+ * @Author: 殷鹏飞
+ * @Date: 2020-02-22 15:35:27
+ * @Description: 
+ */
 'use strict'
 const utils = require('./utils')
 const webpack = require('webpack')
@@ -82,7 +87,7 @@ module.exports = new Promise((resolve, reject) => {
       // Add FriendlyErrorsPlugin
       devWebpackConfig.plugins.push(new FriendlyErrorsPlugin({
         compilationSuccessInfo: {
-          messages: [`Your application is running here: http://${devWebpackConfig.devServer.host}:${port}`],
+          messages: [`ypf项目前台页面: http://${devWebpackConfig.devServer.host}:${port}`],
         },
         onErrors: config.dev.notifyOnErrors
         ? utils.createNotifierCallback()
