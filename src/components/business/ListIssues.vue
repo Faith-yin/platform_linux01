@@ -5,6 +5,17 @@
 -->
 <template>
   <div id="issues">
+    <!-- 输入框部分 -->
+    <div class="form-wrapper">
+      <div class="form_input">
+        <el-input type="textarea"
+                  rows=3
+                  placeholder="我有新的Issue..."
+                  v-model="issueValue"></el-input>
+      </div>
+      <el-button @click="addIssue" type="primary" size="small" icon="el-icon-circle-plus-outline">提问Issue</el-button>
+    </div>
+    <!-- issues列表 -->
     <div v-for="(item,index) in arr" :key="index" class="issue-item">
       <div class="title-wrapper">
         <div class="title" @click="listClick(index)">{{item.title}}</div>
@@ -22,6 +33,8 @@
 export default {
   data() {
     return {
+      // issue
+      issueValue: null,
       // 列表数据（暂时）
       arr: [
         {title: 'linux命令内核是如何工作的？', date: '2020-02-20 15:40:05', username: '小明', viewCount: 11},
@@ -39,13 +52,42 @@ export default {
      */
     listClick(index) {
       this.$emit('listClick', index)
-    }
+    },
+    /**
+     * @Author: 殷鹏飞
+     * @Date: 2020-03-06 16:08:08
+     * @Description: 添加issue
+     */
+    addIssue() {
+
+    },
   }
 }
 </script>
 
 <style lang="scss">
 #issues {
+  .form-wrapper {
+    .form_username {
+      padding: 10px 0;
+      color: #ff6700;
+    }
+    .form_input {
+      padding-bottom: 10px;
+    }
+    .el-button--primary {
+      background-color: #FFF3D9;
+      border-color: rgb(248, 226, 181);
+      color: #333;
+      &:hover {
+        background-color: rgb(248, 226, 181);
+      }
+      .el-button--small {
+        padding: 9px 8px;
+      }
+    }
+  }
+
   .issue-item {
     margin: 10px 0;
     padding: 18px;
