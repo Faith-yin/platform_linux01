@@ -4,40 +4,60 @@
  * @information: 主页面
  */
 #home-page {
+    min-height: 100vh;
+    background-color: #F4F5F5;
+    padding-bottom: 10px;
     // 顶部区域
-    .header {
-        width: 1200px;
-        margin: 10px auto;
-        display: flex;
-        justify-content: space-between;
-        img {
-            width: 50px;
-        }
-        .title-info {
-            display: flex;
-            .top-title {
-                margin-left: 10px;
-                font-size: 28px;
-                font-weight: 600;
-                line-height: 51px;
-            }
-        }
-        // 右侧下拉菜单
-        .el-dropdown {
-          .el-dropdown-link {
-            color: #409EFF;
-            line-height: 51.5px;
-            cursor: pointer;
+    .top-wrapper {
+      width: 100%;
+      padding: 10px 0;
+      background-color: #fff;
+      box-shadow: 0 1px 3px rgb(250, 247, 247);
+      position: fixed;
+      z-index: 10;
+      .header {
+          width: 1200px;
+          margin: 0 auto;
+          display: flex;
+          justify-content: space-between;
+          img {
+              width: 50px;
           }
-        }
+          .title-info {
+              display: flex;
+              cursor: pointer;
+              .top-title {
+                  margin-left: 10px;
+                  font-size: 28px;
+                  font-weight: 600;
+                  line-height: 51px;
+              }
+          }
+          // 右侧下拉菜单
+          .el-dropdown {
+            .el-dropdown-link {
+              color: #409EFF;
+              line-height: 51.5px;
+              cursor: pointer;
+            }
+          }
+      }
     }
 
     // 主体区域
     .body {
-        .main-container {
+        .list-container, .item-container {
             width: 1000px;
             margin: 0 auto;
         }
+    }
+
+    // 底部区域
+    .footer {
+      margin-top: 50px;
+      font-size: 12px;
+      text-align: center;
+      color: #999;
     }
 
 }

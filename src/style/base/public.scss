@@ -1,26 +1,113 @@
 * {
-    margin: 0;
-    padding: 0;
-    text-decoration: none;
-    list-style-type: none;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style-type: none;
 }
 
-.color--gray {
-    color: #969799;
+.color--999 {
+  color: #999999;
 }
 
-.color--black {
-    color: #333333;
+.color--333 {
+  color: #333333;
 }
 
-.color--green {
-    color: #1fb19e;
+
+.mt--10 { //外上间距
+  margin-top: 10px;
 }
 
-.color--orange {
-    color: #ff8b37;
+.mt--30 {
+  margin-top: 30px;
 }
 
-.color--red {
-    color: #eb4c44;
+.mt--20 {
+  margin-top: 20px;
 }
+
+.mb--10 { //外下间距
+  margin-bottom: 10px;
+}
+
+.mb--30 {
+  margin-bottom: 30px;
+}
+
+.mb--20 { 
+  margin-bottom: 20px;
+}
+
+.ml--10 { //外左间距
+  margin-left: 10px;
+}
+
+.ml--30 {
+  margin-left: 30px;
+}
+
+.ml--20 {
+  margin-left: 20px;
+}
+
+.mr--10 { //外右间距
+  margin-right: 10px;
+}
+
+.mr--30 {
+  margin-right: 30px;
+}
+
+.mr--20 {
+  margin-right: 20px;
+}
+
+.pt--10 { //内上间距
+  padding-top: 10px;
+}
+
+.pt--30 {
+  padding-top: 30px;
+}
+
+.pt--20 {
+  padding-top: 20px;
+}
+
+.pb--10 { //内下间距
+  padding-bottom: 10px;
+}
+
+.pb--30 {
+  padding-bottom: 30px;
+}
+
+.pb--20 { 
+  padding-bottom: 20px;
+}
+
+.pl--10 { //内左间距
+  padding-left: 10px;
+}
+
+.pl--30 {
+  padding-left: 30px;
+}
+
+.pl--20 {
+  padding-left: 20px;
+}
+
+.pr--10 { //内右间距
+  padding-right: 10px;
+}
+
+.pr--30 {
+  padding-right: 30px;
+}
+
+.pr--20 {
+  padding-right: 20px;
+}
+
+

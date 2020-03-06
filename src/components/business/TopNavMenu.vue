@@ -13,11 +13,11 @@
                         background-color="#FFF3D9"
                         text-color="#333"
                         active-text-color="#409EFF">
-                <el-menu-item index="1">最新信息</el-menu-item>
-                <el-menu-item index="2">文章视图</el-menu-item>
-                <el-menu-item index="3">视频资源</el-menu-item>
-                <el-menu-item index="4">issues探讨区</el-menu-item>
-                <el-menu-item index="5">站外学习链接</el-menu-item>
+                <el-menu-item index=1>最新公告</el-menu-item>
+                <el-menu-item index=2>最新文章</el-menu-item>
+                <el-menu-item index=3>视频资源</el-menu-item>
+                <el-menu-item index=4>Issues探讨区</el-menu-item>
+                <el-menu-item index=5>站外学习链接</el-menu-item>
             </el-menu>
         </div>
     </div>
@@ -53,6 +53,9 @@ export default {
         display: flex;
         justify-content: center;
         margin: 0 auto 10px;
+        .el-menu-demo {
+          margin-top: 72px;
+        }
         .el-menu-item {
             margin: 0 40px;
             font-size: 16px;
