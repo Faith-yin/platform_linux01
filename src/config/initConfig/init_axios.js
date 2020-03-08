@@ -8,9 +8,7 @@ import { Message } from 'element-ui'
 
 let path = {
     // 本地
-    // development: `http://localhost:3000/`,
-    // 豆瓣
-    development: `https://douban.uieee.com`
+    development: `http://localhost:8888/`,
 }
 
 const ENV = process.env.NODE_ENV
@@ -19,7 +17,7 @@ export default class InitAxios {
         // 基础URL
         this.baseURL = path[ENV]
         // 成功响应状态码
-        this.successCode = [1000, 200, 0]
+        this.successCode = [ 200 ]
     }
     /*
     * @author: 殷鹏飞
@@ -36,8 +34,8 @@ export default class InitAxios {
     */
     responseFun(response) {
         let { data } = response
-        let { message, start } = data
-        let isSuccess = this.verifyCode(start)
+        let { message, status } = data
+        let isSuccess = this.verifyCode(status)
         if (isSuccess) {
             return Promise.resolve(data)
         }
@@ -49,8 +47,8 @@ export default class InitAxios {
     * @Date: 2019-12-26 08:51:44
     * @information: 检验状态码
     */
-    verifyCode(statusCode) {
-        return this.successCode.includes(statusCode)
+    verifyCode(status) {
+        return this.successCode.includes(status)
     }
     /*
     * @author: 殷鹏飞
