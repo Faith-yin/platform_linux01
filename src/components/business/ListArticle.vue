@@ -5,7 +5,7 @@
 -->
 <template>
   <div id="new-article">
-    <div v-for="(item,index) in arr" :key="index" class="article-item">
+    <div v-for="(item,index) in dataList" :key="index" class="article-item">
       <div class="title-wapper">
         <div class="title" @click="$emit('listClick',index)">{{item.title}}</div>
       </div>
@@ -13,8 +13,8 @@
         <div class="content color--333">{{item.content}}</div>
       </div>
       <div class="bottom-wapper color--999">
-        <div class="mr--30">作者：{{item.author}}</div>
-        <div class="mr--30">发布时间：{{item.date}}</div>
+        <div class="mr--30">作者：{{item.userId}}</div>
+        <div class="mr--30">发布时间：{{timeFormat(item.date)}}</div>
         <div>浏览次数：{{item.viewCount}}</div>
       </div>
     </div>
@@ -22,20 +22,21 @@
 </template>
 
 <script>
+import publicClass from '@/mixins/public_class.js'
+
 export default {
-  data() {
-    return {
-      // 列表信息（暂时）
-      arr: [
-        {title: '这是题目2',content: '这是内容2....', date: '2020-02-22', author: '殷鹏飞', viewCount: 22, comment: '这是评论2。。'},
-        {title: '这是题目2',content: '这是内容2....', date: '2020-02-22', author: '殷鹏飞', viewCount: 22, comment: '这是评论2。。'},
-        {title: '这是题目2',content: '这是内容2....', date: '2020-02-22', author: '殷鹏飞', viewCount: 22, comment: '这是评论2。。'},
-      
-      ]
+  props: {
+    // 数据列表
+    dataList: {
+      type: Array,
+      default: [],
     }
   },
-  methods: {
+  mixins: [publicClass],
+  data() {
+    return {}
   },
+  methods: {},
 }
 </script>
 

@@ -18,14 +18,14 @@
     </div>
     <!-- 主体区域 -->
     <div class="body-wrapper">
-      <div class="title-wrapper">{{obj.title}}</div>
+      <div class="title-wrapper">{{data.title}}</div>
       <div class="info-wrapper mb--20">
-        <div class="one-info mr--30"><i class="el-icon-user"></i> {{obj.author}}</div>
-        <div><i class="el-icon-view"></i> {{obj.viewCount}}次浏览</div>
+        <div class="one-info mr--30"><i class="el-icon-user"></i> {{data.adminId}}</div>
+        <div><i class="el-icon-view"></i> {{data.viewCount}}次浏览</div>
       </div>
-      <div class="content-wrapper">{{obj.content}}</div>
+      <div class="content-wrapper">{{data.content}}</div>
       <div class="link-wrapper">
-        <el-link :href="obj.link" icon="el-icon-position" type="success">点击跳转学习链接...</el-link>
+        <el-link :href="data.link" icon="el-icon-position" type="success">点击跳转学习链接...</el-link>
       </div>
     </div>
   </div>
@@ -40,7 +40,7 @@ export default {
   data() {
     return {
       // 详情信息
-      obj: {title: 'linux深度学习链接', author: '殷鹏飞',link: 'https://www.mi.com',content: '想学习的可以点进去学习哦',viewCount: 11}
+      data: {},
     }
   },
   methods: {
@@ -54,6 +54,10 @@ export default {
         name: 'HomePage'
       })
     },
+  },
+  mounted() {
+    // 从 sessionStorage 中获取详情信息
+    this.data = JSON.parse(sessionStorage.getItem('itemDetail'))
   },
 }
 </script>

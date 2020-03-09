@@ -15,6 +15,10 @@ const publicApi = {
   showAllUser() {
     return axios.get(`/user/showAllUser`)
   },
+  // 条件查询：根据用户名称 和 用户密码查询
+  findUserByNameAndPassword(model) {
+    return axios.post(`/user/findUserByNameAndPassword`,model)
+  },
   // 添加
   addUser(model) {
     return axios.post(`/user/addUser`,model)
@@ -32,11 +36,11 @@ const publicApi = {
    */
     // 查询全部
     showAllInformation() {
-      return axios.get(`/informaion/showAllInformation`)
+      return axios.get(`/information/showAllInformation`)
     },
-    // 条件查询：按照管理员id查询
-    findInformationByAdminId(model) {
-      return axios.post(`/informaion/findInformationByAdminId`,model)
+    // 修改
+    updateInformation(model) {
+      return axios.put(`/information/updateInformation`,model)
     },
 
 
@@ -53,6 +57,10 @@ const publicApi = {
     addArticle(model) {
       return axios.post(`/article/addArticle`,model)
     },
+    // 修改
+    updateArticle(model) {
+      return axios.put(`/article/updateArticle`,model)
+    },
 
 
   /**
@@ -63,6 +71,10 @@ const publicApi = {
   // 查询全部
   showAllVideo() {
     return axios.get(`/video/showAllVideo`)
+  },
+  // 修改
+  updateVideo(model) {
+    return axios.put(`/video/updateVideo`,model)
   },
 
 
@@ -79,17 +91,21 @@ const publicApi = {
   addIssues(model) {
     return axios.post(`/issues/addIssues`,model)
   },
+  // 修改
+  updateIssues(model) {
+    return axios.put(`/issues/updateIssues`,model)
+  },
   // issuesComment 查询全部
   showAllIssuesComment() {
     return axios.get(`/issuesComment/showAllIssuesComment`)
   },
   // issuesComment 条件查询：根据归属问题issueId查询
   findIssuesCommentByIssuesId(model) {
-    return axios.post(`/issuesComment/findIssuesCommentByIssuesId`,model)
+    return axios.post(`/issuesComment/findIssuesCommentByIssuesId/${model}`)
   },
   // issuesComment 添加
   addIssuesComment(model) {
-    return axios.post(`/issuesComment/addIssuesComment`)
+    return axios.post(`/issuesComment/addIssuesComment`,model)
   },
 
 
@@ -98,10 +114,14 @@ const publicApi = {
    * @Date: 2020-03-08 10:02:33
    * @Description: outsidelink 操作接口
    */  
+  // 查询全部
   showAllOutsidelink() {
     return axios.get(`/outsidelink/showAllOutsidelink`)
   },
-
+  // 修改
+  updateOutsidelink(model) {
+    return axios.put(`/outsidelink/updateOutsidelink`,model)
+  },
 
 
 

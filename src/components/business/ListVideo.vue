@@ -5,7 +5,7 @@
 -->
 <template>
   <div id="video-list">
-    <div v-for="(item,index) in arr" :key="index" class="video-item">
+    <div v-for="(item,index) in dataList" :key="index" class="video-item">
       <div class="title-wrapper">
         <div class="title" @click="$emit('listClick',index)">{{item.title}}</div>
       </div>
@@ -13,8 +13,8 @@
         <div class="content">{{item.content}}</div>
       </div>
       <div class="bottom-wrapper">
-        <div class="mr--30">添加者：{{item.author}}</div>
-        <div class="mr--30">上传日期：{{item.date}}</div>
+        <div class="mr--30">添加者：{{item.adminId}}</div>
+        <div class="mr--30">上传日期：{{timeFormat(item.date)}}</div>
         <div>浏览次数：{{item.viewCount}}</div>
       </div>
     </div>
@@ -22,25 +22,21 @@
 </template>
 
 <script>
+import publicClass from '@/mixins/public_class.js'
+
 export default {
-  data() {
-    return {
-      arr: [
-        {title: '这是视频标题1', content: '这是视屏的内容，想学习的小伙伴可以点进去哦，这是视屏的内容，想学习的小伙伴可以点进去哦，这是视屏的内容，想学习的小伙伴可以点进去哦，这是视屏的内容，想学习的小伙伴可以点进去哦，', link: 'https://www.mi.com', author: '殷鹏飞',viewCount: 29, date: '2020-03-07 15:15:00'},
-        {title: '这是视频标题2', content: '这是视屏的内容，想学习的小伙伴可以点进去哦，这是视屏的内容，想学习的小伙伴可以点进去哦，这是视屏的内容，想学习的小伙伴可以点进去哦，这是视屏的内容，想学习的小伙伴可以点进去哦，', link: 'https://www.mi.com', author: '殷鹏飞',viewCount: 29, date: '2020-03-07 15:15:00'},
-        {title: '这是视频标题3', content: '这是视屏的内容，想学习的小伙伴可以点进去哦，这是视屏的内容，想学习的小伙伴可以点进去哦，这是视屏的内容，想学习的小伙伴可以点进去哦，这是视屏的内容，想学习的小伙伴可以点进去哦，', link: 'https://www.mi.com', author: '殷鹏飞',viewCount: 29, date: '2020-03-07 15:15:00'},
-        {title: '这是视频标题4', content: '这是视屏的内容，想学习的小伙伴可以点进去哦，这是视屏的内容，想学习的小伙伴可以点进去哦，这是视屏的内容，想学习的小伙伴可以点进去哦，这是视屏的内容，想学习的小伙伴可以点进去哦，', link: 'https://www.mi.com', author: '殷鹏飞',viewCount: 29, date: '2020-03-07 15:15:00'},
-        {title: '这是视频标题5', content: '这是视屏的内容，想学习的小伙伴可以点进去哦，这是视屏的内容，想学习的小伙伴可以点进去哦，这是视屏的内容，想学习的小伙伴可以点进去哦，这是视屏的内容，想学习的小伙伴可以点进去哦，', link: 'https://www.mi.com', author: '殷鹏飞',viewCount: 29, date: '2020-03-07 15:15:00'},
-        {title: '这是视频标题6', content: '这是视屏的内容，想学习的小伙伴可以点进去哦，这是视屏的内容，想学习的小伙伴可以点进去哦，这是视屏的内容，想学习的小伙伴可以点进去哦，这是视屏的内容，想学习的小伙伴可以点进去哦，', link: 'https://www.mi.com', author: '殷鹏飞',viewCount: 29, date: '2020-03-07 15:15:00'},
-        {title: '这是视频标题7', content: '这是视屏的内容，想学习的小伙伴可以点进去哦，这是视屏的内容，想学习的小伙伴可以点进去哦，这是视屏的内容，想学习的小伙伴可以点进去哦，这是视屏的内容，想学习的小伙伴可以点进去哦，', link: 'https://www.mi.com', author: '殷鹏飞',viewCount: 29, date: '2020-03-07 15:15:00'},
-        {title: '这是视频标题8', content: '这是视屏的内容，想学习的小伙伴可以点进去哦，这是视屏的内容，想学习的小伙伴可以点进去哦，这是视屏的内容，想学习的小伙伴可以点进去哦，这是视屏的内容，想学习的小伙伴可以点进去哦，', link: 'https://www.mi.com', author: '殷鹏飞',viewCount: 29, date: '2020-03-07 15:15:00'},
-        {title: '这是视频标题9', content: '这是视屏的内容，想学习的小伙伴可以点进去哦，这是视屏的内容，想学习的小伙伴可以点进去哦，这是视屏的内容，想学习的小伙伴可以点进去哦，这是视屏的内容，想学习的小伙伴可以点进去哦，', link: 'https://www.mi.com', author: '殷鹏飞',viewCount: 29, date: '2020-03-07 15:15:00'},
-      ]
+  props: {
+    // 数据列表
+    dataList: {
+      type: Array,
+      default: [],
     }
   },
-  methods: {
-    
+  mixins: [publicClass],
+  data() {
+    return {}
   },
+  methods: {},
 }
 </script>
 

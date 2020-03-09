@@ -36,11 +36,22 @@
         <div class="body">
           <!-- 列表容器 -->
           <div class="list-container">
-            <list-information v-if="selectedTab==1" @listClick="listClick"></list-information>
-            <list-article v-if="selectedTab==2" @listClick="listClick"></list-article>
-            <list-video v-if="selectedTab==3" @listClick="listClick"></list-video>
-            <list-issues v-if="selectedTab==4" @listClick="listClick"></list-issues>
-            <list-outside-link v-if="selectedTab==5" @listClick="listClick"></list-outside-link>
+            <list-information v-if="selectedTab==1" 
+                              :dataList="selectedTab==1&&dataList" 
+                              @listClick="listClick"></list-information>
+            <list-article v-if="selectedTab==2" 
+                          :dataList="selectedTab==2&&dataList" 
+                          @listClick="listClick"></list-article>
+            <list-video v-if="selectedTab==3" 
+                        :dataList="selectedTab==3&&dataList" 
+                        @listClick="listClick"></list-video>
+            <list-issues  v-if="selectedTab==4" 
+                          :dataList="selectedTab==4&&dataList" 
+                          @listClick="listClick"
+                          @refreshFetchList="fetchListData"></list-issues>
+            <list-outside-link  v-if="selectedTab==5" 
+                                :dataList="selectedTab==5&&dataList" 
+                                @listClick="listClick"></list-outside-link>
           </div>
         </div>
         <!-- 底部区域 -->
@@ -60,6 +71,8 @@ export default {
           username: '殷鹏飞',
           // 当前tabbar选择项,默认是[最新公告]
           selectedTab: 1,
+          // 数据列表
+          dataList: [],
         }
     },
     methods: {
@@ -98,6 +111,8 @@ export default {
           cancelButtonText: '取消',
           type: 'warning'
         }).then(_ => {
+          // 清空 sessionStorage 中存放的信息
+          sessionStorage.clear()
           this.routeGo({name: 'Login'})
         }).catch(_ => {})
       },
@@ -108,6 +123,7 @@ export default {
        */
       selectTabClick(val) {
         this.selectedTab = val
+        this.fetchListData()
       },
       /**
        * @Author: 殷鹏飞
@@ -115,12 +131,54 @@ export default {
        * @Description: 列表被点击
        */
       listClick(val) {
+        let {updatePortMethod} = this.tabToRouterArr.find(el => el.selectedTab == this.selectedTab)
+        let {id, viewCount} = this.dataList[val]
+        viewCount ++  // 浏览次数加一
+        // 请求参数
+        let methodModel = {
+          pMethod: updatePortMethod,
+          params: {id, viewCount},
+          callBack: 'listClickCallBack',
+        }
+        this.methodQuery(methodModel)
+      },
+      /**
+       * @Author: 殷鹏飞
+       * @Date: 2020-03-09 10:54:48
+       * @Description: 列表点击回调
+       */
+      listClickCallBack({data}) {
+        // 将返回的详情 存至 sessionStorage 中
+        sessionStorage.setItem('itemDetail', JSON.stringify(data[0]))
         let {routerName} = this.tabToRouterArr.find(el => el.selectedTab == this.selectedTab)
-        this.routeGo({
-          path: `/${routerName}/${val+1}`,
-        })
+        this.routeGo({path: `/${routerName}/${data[0].id}`})
+      },
+      /**
+       * @Author: 殷鹏飞
+       * @Date: 2020-03-09 10:06:19
+       * @Description: 获取页面列表信息
+       */
+      fetchListData() {
+        let {portMethod} = this.tabToRouterArr.find(el => el.selectedTab == this.selectedTab)
+        // 请求参数
+        let methodModel = {
+          pMethod: portMethod,
+          callBack: 'fetchListDataCallBack',
+        }
+        this.methodQuery(methodModel)
+      },
+      /**
+       * @Author: 殷鹏飞
+       * @Date: 2020-03-09 10:12:45
+       * @Description: 获取页面列表信息回调
+       */
+      fetchListDataCallBack({data}) {
+        this.dataList = data
       },
     },
+    mounted() {
+      this.fetchListData()
+    }
 }
 </script>
 

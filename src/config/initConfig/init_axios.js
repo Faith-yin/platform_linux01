@@ -8,7 +8,8 @@ import { Message } from 'element-ui'
 
 let path = {
     // 本地
-    development: `http://localhost:8888/`,
+    // development: `http://localhost:8888`,
+    development: `/api`,
 }
 
 const ENV = process.env.NODE_ENV
@@ -55,9 +56,18 @@ export default class InitAxios {
     * @Date: 2019-12-26 08:51:44
     * @information: 请求失败回调
     */
-    errorFun() {
-        Message.error('数据库连接失败')
+    errorRequestFun() {
+        Message.error('请求连接失败')
         return Promise.reject()
+    }
+    /**
+     * @Author: 殷鹏飞
+     * @Date: 2020-03-09 17:39:43
+     * @Description: 响应失败回调
+     */
+    errorResponseFun() {
+      Message.error('响应连接失败')
+      return Promise.reject()
     }
     /*
     * @author: 殷鹏飞
@@ -65,14 +75,14 @@ export default class InitAxios {
     * @information: 初始化axios
     */
     init() {
-        let { requestFun, responseFun, errorFun } = this
+        let { requestFun, responseFun, errorRequestFun, errorResponseFun } = this
         // 基础url
         axios.defaults.baseURL = path[ENV];
         // 默认时间
         axios.defaults.timeout = 10000
         // 请求拦截
-        axios.interceptors.request.use(requestFun.bind(this), errorFun)
+        axios.interceptors.request.use(requestFun.bind(this), errorRequestFun)
         // 相应拦截
-        axios.interceptors.response.use(responseFun.bind(this), errorFun)
+        axios.interceptors.response.use(responseFun.bind(this), errorResponseFun)
     }
 }

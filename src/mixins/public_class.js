@@ -3,7 +3,8 @@
  * @Date: 2019-12-26 14:27:52
  * @information: 公共方法
  */
-import { Message } from 'element-ui'
+import { Message, Loading  } from 'element-ui'
+import moment from 'moment'
 
 export default {
     methods: {
@@ -14,9 +15,12 @@ export default {
          */
         methodQuery(model) {
             // loading名称，消息提示，promise或方法名称，方法参数，回调
-            let { loadingName, message, pMethod, params, callBack } = model
+            let { message, pMethod, params, callBack } = model
+            let options = {
+              spinner: 'el-icon-loading',
+            }
             // 打开loading
-            loadingName && (this[loadingName] = true)
+            Loading.service(options);
             // 判断传进来的是 promise 还是  方法名称
             let method = typeof pMethod == 'string' ? this[pMethod](params) : pMethod
             // 操作promise
@@ -26,7 +30,10 @@ export default {
                 callBack && await this[callBack](res)
             }).finally(_ => {
                 // 关闭loading
-                loadingName && (this[loadingName] = false)
+                let loadingInstance = Loading.service(options);
+                this.$nextTick(() => { // 以服务的方式调用的 Loading 需要异步关闭
+                    loadingInstance.close();
+                });
             })
         },
         /**
@@ -56,8 +63,12 @@ export default {
                 // 字符串或数组
                 obj = typeof arr == 'string' ? [arr] : arr
             }
-            let mark = !obj.some(el => {
-                return (!el && el != 0) || (Array.isArray(el) && !el.length)
+            let mark = obj.every(el => {
+              if(typeof(el) === 'string') return el
+              if(typeof(el) === 'number') return true
+              if(Array.isArray(el)) return el.length
+              if(typeof(el) === 'object') return this.formRequired({arr: el})
+              return false
             })
             !mark && Message.warning(msg ? msg : '请完善必填信息')
             return mark
@@ -84,5 +95,25 @@ export default {
             }
             this.timeNow = `${date.getFullYear()}-${nowMonth}-${strDate}`
         },
+        /**
+         * @Author: 殷鹏飞
+         * @Date: 2020-03-09 10:26:16
+         * @Description: 格式化时间
+         */
+        timeFormat(val) {
+          return moment(val).format('YYYY-MM-DD HH:mm:ss')
+        },
+        /**
+         * @Author: 殷鹏飞
+         * @Date: 2020-03-09 17:29:02
+         * @Description: 检测某值是否全为空格
+         */
+        checkBlankSpace(str){
+          while(str.lastIndexOf(" ") >= 0){
+            str = str.replace(" ","");
+          }
+          if(str.length == 0) return false
+          return true
+        }
     }
 }

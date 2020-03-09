@@ -13,6 +13,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 import vueInit from '@/vue_init.js'
 import './style/index.scss'
 import moment from 'moment'
+import ypfMethods from 'ypf-methods'
 
 
 import Vuex from 'vuex'
@@ -21,6 +22,7 @@ Vue.config.productionTip = false
 
 Vue.use(ElementUi)
 Vue.use(vueInit)
+Vue.use(ypfMethods)
 
 /* eslint-disable no-new */
 new Vue({

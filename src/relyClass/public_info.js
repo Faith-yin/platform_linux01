@@ -9,13 +9,38 @@ export default {
   mixins: [],
   data() {
     return {
-      // tab列表对应的详情页
+      // 配置对象
       tabToRouterArr: [
-        {selectedTab: 1, routerName: 'DetailInformation'},
-        {selectedTab: 2, routerName: 'DetailArticle'},
-        {selectedTab: 3, routerName: 'DetailVideo'},
-        {selectedTab: 4, routerName: 'DetailIssues'},
-        {selectedTab: 5, routerName: 'DetailOutsideLink'},
+        {
+          selectedTab: 1, 
+          routerName: 'DetailInformation', 
+          portMethod: 'showAllInformation',
+          updatePortMethod: 'updateInformation',
+        },
+        {
+          selectedTab: 2, 
+          routerName: 'DetailArticle', 
+          portMethod: 'showAllArticle',
+          updatePortMethod: 'updateArticle',
+        },
+        {
+          selectedTab: 3, 
+          routerName: 'DetailVideo', 
+          portMethod: 'showAllVideo',
+          updatePortMethod: 'updateVideo',
+        },
+        {
+          selectedTab: 4, 
+          routerName: 'DetailIssues', 
+          portMethod: 'showAllIssues',
+          updatePortMethod: 'updateIssues',
+        },
+        {
+          selectedTab: 5,
+          routerName: 'DetailOutsideLink', 
+          portMethod: 'showAllOutsidelink',
+          updatePortMethod: 'updateOutsidelink',
+        },
       ]
     }
   },
@@ -28,6 +53,10 @@ export default {
     // 查询全部
     showAllUser() {
       return publicApi.showAllArticle()
+    },
+    // 条件查询：根据用户名称 和 用户密码查询
+    findUserByNameAndPassword(model) {
+      return publicApi.findUserByNameAndPassword(model)
     },
     // 添加
     addUser(model) {
@@ -52,6 +81,10 @@ export default {
       findInformationByAdminId(model) {
         return publicApi.findInformationByAdminId(model)
       },
+      // 修改
+      updateInformation(model) {
+        return publicApi.updateInformation(model)
+      },
 
 
     /**
@@ -67,6 +100,10 @@ export default {
       addArticle(model) {
         return publicApi.addArticle(model)
       },
+      // 修改
+      updateArticle(model) {
+        return publicApi.updateArticle(model)
+      },
 
 
     /**
@@ -77,6 +114,10 @@ export default {
     // 查询全部
     showAllVideo() {
       return publicApi.showAllVideo()
+    },
+    // 修改
+    updateVideo(model) {
+      return publicApi.updateVideo(model)
     },
 
 
@@ -92,6 +133,10 @@ export default {
     // 添加
     addIssues(model) {
       return publicApi.addIssues(model)
+    },
+    // 修改
+    updateIssues(model) {
+      return publicApi.updateIssues(model)
     },
     // issuesComment 查询全部
     showAllIssuesComment() {
@@ -112,8 +157,13 @@ export default {
      * @Date: 2020-03-08 10:02:33
      * @Description: outsidelink 操作接口
      */  
+    // 查询全部
     showAllOutsidelink() {
       return publicApi.showAllOutsidelink()
+    },
+    // 修改
+    updateOutsidelink(model) {
+      return publicApi.updateOutsidelink(model)
     },
 
 

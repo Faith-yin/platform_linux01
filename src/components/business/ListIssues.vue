@@ -16,12 +16,12 @@
       <el-button @click="addIssue" type="primary" size="small" icon="el-icon-circle-plus-outline">提问Issue</el-button>
     </div>
     <!-- issues列表 -->
-    <div v-for="(item,index) in arr" :key="index" class="issue-item">
+    <div v-for="(item,index) in dataList" :key="index" class="issue-item">
       <div class="title-wrapper">
         <div class="title" @click="listClick(index)">{{item.title}}</div>
       </div>
       <div class="content-wrapper">
-        <div class="mr--30">提问者：{{item.username}}</div>
+        <div class="mr--30">提问者：{{item.userId}}</div>
         <div class="mr--30">提问时间：{{item.date}}</div>
         <div>浏览次数：{{item.viewCount}}</div>
       </div>
@@ -30,18 +30,22 @@
 </template>
 
 <script>
+import publicClass from '@/mixins/public_class.js'
+import publicInfo from '@/relyClass/public_info.js'
+
 export default {
+  props: {
+    // 数据列表
+    dataList: {
+      type: Array,
+      default: [],
+    }
+  },
+  mixins: [publicClass, publicInfo],
   data() {
     return {
-      // issue
+      // issue 输入框值
       issueValue: null,
-      // 列表数据（暂时）
-      arr: [
-        {title: 'linux命令内核是如何工作的？', date: '2020-02-20 15:40:05', username: '小明', viewCount: 11},
-        {title: 'linux命令内核是如何工作的？', date: '2020-02-20 15:40:05', username: '小明', viewCount: 11},
-        {title: 'linux命令内核是如何工作的？', date: '2020-02-20 15:40:05', username: '小明', viewCount: 11},
-        {title: 'linux命令内核是如何工作的？', date: '2020-02-20 15:40:05', username: '小明', viewCount: 11},
-      ]
     }
   },
   methods: {
@@ -56,10 +60,48 @@ export default {
     /**
      * @Author: 殷鹏飞
      * @Date: 2020-03-06 16:08:08
-     * @Description: 添加issue
+     * @Description: 添加 issue
      */
     addIssue() {
-
+      let {issueValue} = this
+      // 检验输入内容是否为空
+      if(!issueValue || !this.checkBlankSpace(issueValue)) {
+        return this.$message({
+          showClose: true,
+          message: 'issue 不能为空',
+          type: 'warning'
+        })
+      }
+      // 从sessionStorage 获取用户信息
+      let {id} = JSON.parse(sessionStorage.getItem('userInfo'))
+      let model = {
+        title: issueValue,
+        userId: id,
+        date: this.timeFormat(new Date()),
+      }
+      // 请求参数
+      let methodModel = {
+        pMethod: 'addIssues',
+        params: model,
+        callBack: 'addIssueCallBack',
+      }
+      this.methodQuery(methodModel)
+    },
+    /**
+     * @Author: 殷鹏飞
+     * @Date: 2020-03-09 17:14:49
+     * @Description: 添加issue回调事件
+     */
+    addIssueCallBack(res) {
+      this.$message({
+        showClose: true,
+        message: '添加成功',
+        type: 'success'
+      })
+      // 清空输入框值
+      this.issueValue = null
+      // 重新加载列表数据以更新列表
+      this.$emit('refreshFetchList')
     },
   }
 }

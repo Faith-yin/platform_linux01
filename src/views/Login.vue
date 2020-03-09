@@ -41,16 +41,6 @@
                             @click="onSubmit">登 录</el-button>
             </el-form-item>
         </el-form>
-        <!-- 弹出框 -->
-        <el-dialog  title="温馨提示"
-                    :visible.sync="dialogVisible"
-                    width="400px">
-            <span>账号或密码输入错误，请重新输入！</span>
-            <span slot="footer" class="dialog-footer">
-                <el-button  type="primary" 
-                            @click="dialogVisible=false">确 定</el-button>
-            </span>
-        </el-dialog>
     </div>
 </template>
 
@@ -65,7 +55,7 @@ export default {
             // 表单内容
             form: {
                 username: '',
-                password: ''
+                password: '',
             },
             // 表单验证，需要在 el-form-item 元素中增加 prop 属性
             rules: {
@@ -76,8 +66,6 @@ export default {
                     {required: true, message: '密码不可为空', trigger: 'blur'}
                 ]
             },
-            // 对话框显示和隐藏
-            dialogVisible: false,
         }
     },
     methods: {
@@ -87,13 +75,34 @@ export default {
          * @information: 登录点击
          */
         onSubmit() {
-            // 为表单绑定验证功能
-            this.$refs.loginForm.validate((valid) => {
-                if (valid) {
-                    this.$message.success('登录成功')
-                    this.routeGo({name: 'HomePage'})
-                }
+          let {form} = this
+          // 表单校验
+          let mark = this.formRequired({arr: form, msg: '请输入用户名和密码'})
+          if(!mark) return;
+          // 请求参数
+          let methodModel = {
+            pMethod: 'findUserByNameAndPassword',
+            params: form,
+            callBack: 'onSubmitCallBack',
+          }
+          this.methodQuery(methodModel)
+        },
+        /**
+         * @Author: 殷鹏飞
+         * @Date: 2020-03-08 18:04:28
+         * @Description: 登录点击回调事件
+         */
+        onSubmitCallBack({data}) {
+          if(data && data.length) { // 已注册
+            this.$message({
+              showClose: true,
+              message: '登录成功',
+              type: 'success'
             });
+            // 将账户信息存至 sessionStorage 中
+            sessionStorage.setItem('userInfo', JSON.stringify(data[0]))
+            this.routeGo({name: 'HomePage'})
+          }
         },
         /**
          * @author: 殷鹏飞
@@ -101,7 +110,7 @@ export default {
          * @information: 注册点击
          */
         register() {
-            this.routeGo({name: 'Register'})
+          this.routeGo({name: 'Register'})
         }
     }
 }

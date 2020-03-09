@@ -5,7 +5,7 @@
 -->
 <template>
   <div id="outside-link">
-    <div v-for="(item,index) in arr" :key="index" class="outside-item">
+    <div v-for="(item,index) in dataList" :key="index" class="outside-item">
       <div class="title-wrapper">
         <div class="title" @click="$emit('listClick',index)">{{item.title}}</div>
       </div>
@@ -13,7 +13,7 @@
         <div class="content">{{item.content}}</div>
       </div>
       <div class="bottom-wrapper">
-        <div class="mr--30">添加者：{{item.author}}</div>
+        <div class="mr--30">添加者：{{item.adminId}}</div>
         <div>浏览次数：{{item.viewCount}}</div>
       </div>
     </div>
@@ -21,21 +21,21 @@
 </template>
 
 <script>
+import publicClass from '@/mixins/public_class.js'
+
 export default {
-  data() {
-    return {
-      //列表数据（暂时）
-      arr: [
-        {title: 'linux命令深度学习链接', content: '想学习的小伙伴可以点进去哦', link: 'https://www.mi.com', author: '殷鹏飞', viewCount: 9},
-        {title: 'linux命令深度学习链接', content: '想学习的小伙伴可以点进去哦', link: 'https://www.mi.com', author: '殷鹏飞', viewCount: 9},
-        {title: 'linux命令深度学习链接', content: '想学习的小伙伴可以点进去哦', link: 'https://www.mi.com', author: '殷鹏飞', viewCount: 9},
-        {title: 'linux命令深度学习链接', content: '想学习的小伙伴可以点进去哦', link: 'https://www.mi.com', author: '殷鹏飞', viewCount: 9},
-        {title: 'linux命令深度学习链接', content: '想学习的小伙伴可以点进去哦', link: 'https://www.mi.com', author: '殷鹏飞', viewCount: 9},
-      ]
+  props: {
+    // 数据列表
+    dataList: {
+      type: Array,
+      default: [],
     }
   },
-  methods: {
+  mixins: [publicClass],
+  data() {
+    return {}
   },
+  methods: {},
 }
 </script>
 

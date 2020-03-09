@@ -97,14 +97,18 @@
       justify-content: center;
       color: #999;
       font-size: 15px;
-      .one-info {
-        position: relative;
-        bottom: 2px;
-      }
     }
     .content-wrapper {
       box-sizing: border-box;
       padding: 10px 20px;
+      .empty-content {
+        height: 150px;
+        line-height: 150px;
+        text-align: center;
+        color: #999;
+        font-size: 28px;
+        font-weight: 300;
+      }
       .content-item {
         margin: 15px 0;
         padding: 10px;
@@ -116,8 +120,6 @@
             color: #999;
           }
           .content-title_username {
-            position: relative;
-            bottom: 2px;
             color: #ff6700;
           }
         }
