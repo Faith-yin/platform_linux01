@@ -13,7 +13,7 @@
         <div class="content">{{item.content}}</div>
       </div>
       <div class="bottom-wrapper">
-        <div class="mr--30">添加者：{{item.adminId}}</div>
+        <div class="mr--30">添加者：{{item.username}}</div>
         <div>浏览次数：{{item.viewCount}}</div>
       </div>
     </div>

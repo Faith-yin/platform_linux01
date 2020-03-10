@@ -10,6 +10,8 @@
       <div class="form_input">
         <el-input type="textarea"
                   rows=3
+                  maxlength=240
+                  show-word-limit
                   placeholder="我有新的Issue..."
                   v-model="issueValue"></el-input>
       </div>
@@ -21,8 +23,8 @@
         <div class="title" @click="listClick(index)">{{item.title}}</div>
       </div>
       <div class="content-wrapper">
-        <div class="mr--30">提问者：{{item.userId}}</div>
-        <div class="mr--30">提问时间：{{item.date}}</div>
+        <div class="mr--30">提问者：{{item.username}}</div>
+        <div class="mr--30">提问时间：{{timeFormat(item.date)}}</div>
         <div>浏览次数：{{item.viewCount}}</div>
       </div>
     </div>
@@ -140,6 +142,7 @@ export default {
       .title {
         font-size: 20px;
         font-weight: 500;
+        word-break: break-all;
         &:hover {
           cursor: pointer;
           color: #d33a2a;

@@ -18,7 +18,7 @@
                 <!-- 个人中心 -->
                 <el-dropdown @command="handleCommand">
                   <span class="el-dropdown-link">
-                    你好，欢迎{{username}}<i class="el-icon-arrow-down"></i>
+                    你好，欢迎 {{userInfo.username || '未知用户'}}<i class="el-icon-arrow-down"></i>
                   </span>
                   <el-dropdown-menu slot="dropdown">
                     <el-dropdown-item command="drawerOpen" icon="el-icon-user-solid">个人信息</el-dropdown-item>
@@ -67,8 +67,8 @@ export default {
     mixins: [publicInfo, publicClass],
     data() {
         return {
-          // 用户名称
-          username: '殷鹏飞',
+          // 用户信息
+          userInfo: {},
           // 当前tabbar选择项,默认是[最新公告]
           selectedTab: 1,
           // 数据列表
@@ -177,6 +177,8 @@ export default {
       },
     },
     mounted() {
+      // 从 sessionStorage 中获取用户信息
+      this.userInfo = JSON.parse(sessionStorage.getItem('userInfo'))
       this.fetchListData()
     }
 }

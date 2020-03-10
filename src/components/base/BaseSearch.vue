@@ -7,6 +7,7 @@
     <div id="base-search">
         <el-input   placeholder="搜索感兴趣的资源"
                     prefix-icon="el-icon-search"
+                    clearable
                     size="medium"
                     v-model="searchValue">
         </el-input>

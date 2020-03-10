@@ -20,7 +20,7 @@
     <div class="body-wrapper">
       <div class="title-wrapper">{{data.title}}</div>
       <div class="info-wrapper mb--20">
-        <div class="one-info mr--30"><i class="el-icon-user"></i> {{data.userId}}</div>
+        <div class="one-info mr--30"><i class="el-icon-user"></i> {{data.username}}</div>
         <div class="mr--30"><i class="el-icon-date"></i> {{timeFormat(data.date)}}</div>
         <div><i class="el-icon-view"></i> {{data.viewCount}}次浏览</div>
       </div>
@@ -34,6 +34,8 @@
         <div class="form_input">
           <el-input type="textarea"
                     rows=3
+                    maxlength=240
+                    show-word-limit
                     placeholder="我有新的想法..."
                     v-model="commentValue"></el-input>
         </div>
@@ -45,7 +47,7 @@
         <div class="content-item" v-for="(item,index) in commentList" :key="index">
           <div class="content-title">
             <div class="content-title_num">#{{index+1}}&nbsp;&nbsp;</div>
-            <div class="content-title_username">{{item.userId}}</div>
+            <div class="content-title_username">{{item.username || '未知用户'}}</div>
           </div>
           <div class="content_content">{{item.content}}</div>
           <div class="content_date">{{item.date}}</div>

@@ -87,7 +87,7 @@
     background-color: #fff;
     .title-wrapper {
       box-sizing: border-box;
-      padding: 20px 0 30px;
+      padding: 20px 20px 30px;
       text-align: center;
       font-size: 30px;
       font-weight: 500;
@@ -124,6 +124,7 @@
           }
         }
         .content_content {
+          word-break: break-all;
           padding: 20px 0 20px 20px;
         }
         .content_date {

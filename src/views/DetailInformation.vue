@@ -20,7 +20,7 @@
     <div class="body-wrapper">
       <div class="title-wrapper">{{data.title}}</div>
       <div class="info-wrapper mb--20">
-        <div class="one-info mr--30"><i class="el-icon-user"></i> {{data.adminId}}</div>
+        <div class="one-info mr--30"><i class="el-icon-user"></i> {{data.username}}</div>
         <div class="mr--30"><i class="el-icon-date"></i> {{timeFormat(data.date)}}</div>
         <div><i class="el-icon-view"></i> {{data.viewCount}}次浏览</div>
       </div>

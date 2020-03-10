@@ -13,7 +13,7 @@
         <div class="content color--333">{{item.content}}</div>
       </div>
       <div class="bottom-wapper color--999">
-        <div class="mr--30">发布者：{{item.adminId}}</div>
+        <div class="mr--30">发布者：{{item.username}}</div>
         <div class="mr--30">发布时间：{{timeFormat(item.date)}}</div>
         <div>浏览次数：{{item.viewCount}}</div>
       </div>
