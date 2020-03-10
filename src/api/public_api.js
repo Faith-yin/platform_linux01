@@ -76,6 +76,10 @@ const publicApi = {
   updateVideo(model) {
     return axios.put(`/video/updateVideo`,model)
   },
+  // 添加
+  addVideo(model) {
+    return axios.post(`/video/addVideo`,model)
+  },
 
 
   /**

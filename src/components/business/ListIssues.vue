@@ -10,15 +10,15 @@
       <div class="form_input">
         <el-input type="textarea"
                   rows=3
-                  maxlength=240
+                  maxlength=100
                   show-word-limit
-                  placeholder="我有新的Issue..."
+                  placeholder="我有新的问题..."
                   v-model="issueValue"></el-input>
       </div>
       <el-button @click="addIssue" type="primary" size="small" icon="el-icon-circle-plus-outline">提问Issue</el-button>
     </div>
     <!-- issues列表 -->
-    <div v-for="(item,index) in dataList" :key="index" class="issue-item">
+    <el-card shadow="hover" v-for="(item,index) in dataList" :key="index" class="issue-item">
       <div class="title-wrapper">
         <div class="title" @click="listClick(index)">{{item.title}}</div>
       </div>
@@ -27,7 +27,7 @@
         <div class="mr--30">提问时间：{{timeFormat(item.date)}}</div>
         <div>浏览次数：{{item.viewCount}}</div>
       </div>
-    </div>
+    </el-card>
   </div>
 </template>
 
@@ -134,8 +134,6 @@ export default {
 
   .issue-item {
     margin: 10px 0;
-    padding: 18px;
-    box-sizing: border-box;
     border-radius: 5px;
     background-color: #fff;
     .title-wrapper {

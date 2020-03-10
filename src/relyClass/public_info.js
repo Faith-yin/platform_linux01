@@ -104,6 +104,10 @@ export default {
       updateArticle(model) {
         return publicApi.updateArticle(model)
       },
+      // 添加
+      addVideo(model) {
+        return publicApi.addVideo(model)
+      },
 
 
     /**

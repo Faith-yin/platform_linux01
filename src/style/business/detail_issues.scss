@@ -116,7 +116,9 @@
         background-color: rgb(245, 230, 208);
         .content-title {
           display: flex;
+          font-size: 16px;
           .content-title_num {
+            font-size: 15px;
             color: #999;
           }
           .content-title_username {

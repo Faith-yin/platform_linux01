@@ -5,7 +5,7 @@
 -->
 <template>
   <div id="outside-link">
-    <div v-for="(item,index) in dataList" :key="index" class="outside-item">
+    <el-card shadow="hover" v-for="(item,index) in dataList" :key="index" class="outside-item">
       <div class="title-wrapper">
         <div class="title" @click="$emit('listClick',index)">{{item.title}}</div>
       </div>
@@ -16,7 +16,7 @@
         <div class="mr--30">添加者：{{item.username}}</div>
         <div>浏览次数：{{item.viewCount}}</div>
       </div>
-    </div>
+    </el-card>
   </div>
 </template>
 
@@ -43,8 +43,6 @@ export default {
 #outside-link {
   .outside-item {
     margin: 10px 0;
-    padding: 18px;
-    box-sizing: border-box;
     border-radius: 5px;
     background-color: #fff;
     .title-wrapper {

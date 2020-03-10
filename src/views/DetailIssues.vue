@@ -46,11 +46,11 @@
         <div v-if="!commentList.length" class="empty-content">暂无评论</div>
         <div class="content-item" v-for="(item,index) in commentList" :key="index">
           <div class="content-title">
-            <div class="content-title_num">#{{index+1}}&nbsp;&nbsp;</div>
+            <div class="content-title_num">#{{index+1}}楼&nbsp;&nbsp;</div>
             <div class="content-title_username">{{item.username || '未知用户'}}</div>
           </div>
           <div class="content_content">{{item.content}}</div>
-          <div class="content_date">{{item.date}}</div>
+          <div class="content_date">{{timeFormat(item.date)}}</div>
         </div>
       </div>
     </div>

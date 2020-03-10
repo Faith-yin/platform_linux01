@@ -15,7 +15,7 @@
                         active-text-color="#409EFF">
                 <el-menu-item index=1>最新公告</el-menu-item>
                 <el-menu-item index=2>最新文章</el-menu-item>
-                <el-menu-item index=3>视频资源</el-menu-item>
+                <el-menu-item index=3>课程资源</el-menu-item>
                 <el-menu-item index=4>Issues探讨区</el-menu-item>
                 <el-menu-item index=5>站外学习链接</el-menu-item>
             </el-menu>

@@ -117,8 +117,8 @@ export default {
       this.$message({
         showClose: true,
         message: '注册成功，请登录',
-        type: 'success'
-      });
+        type: 'success',
+      })
       this.routeGo({name:'Login'})
     },
   }

@@ -51,5 +51,20 @@ export default new Router({
       name: 'DetailOutsideLink',
       component: () => import('@/views/DetailOutsideLink')
     },
+    {
+      path: '/PersonInfo', //个人信息页面
+      name: 'PersonInfo',
+      component: () => import('@/views/PersonInfo')
+    },
+    {
+      path: '/AddArticle', //写文章页面
+      name: 'AddArticle',
+      component: () => import('@/views/AddArticle')
+    },
+    {
+      path: '/AddVideo', //上传课程资源页面
+      name: 'AddVideo',
+      component: () => import('@/views/AddVideo')
+    },
   ]
 })

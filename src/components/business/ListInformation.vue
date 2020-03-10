@@ -5,7 +5,7 @@
 -->
 <template>
   <div id="new-information">
-    <div v-for="(item,index) in dataList" :key="index" class="information-item">
+    <el-card shadow="hover" v-for="(item,index) in dataList" :key="index" class="information-item">
       <div class="title-wapper">
         <div class="title" @click="listClick(index)">{{item.title}}</div>
       </div>
@@ -17,7 +17,7 @@
         <div class="mr--30">发布时间：{{timeFormat(item.date)}}</div>
         <div>浏览次数：{{item.viewCount}}</div>
       </div>
-    </div>
+    </el-card>
   </div>
 </template>
 
@@ -53,13 +53,11 @@ export default {
 #new-information {
   .information-item {
     margin: 10px 0;
-    padding: 18px;
-    box-sizing: border-box;
     border-radius: 5px;
     background-color: #fff;
     .title-wapper {
       .title {
-        font-size: 22px;
+        font-size: 20px;
         font-weight: 500;
         &:hover {
           cursor: pointer;

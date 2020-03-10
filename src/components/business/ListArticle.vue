@@ -5,7 +5,13 @@
 -->
 <template>
   <div id="new-article">
-    <div v-for="(item,index) in dataList" :key="index" class="article-item">
+    <!-- 上方区域 -->
+    <div class="add-wrapper">
+      <div class="add_text">如果你有新的相关知识想要分享，请点击右侧按钮以写文章...</div>
+      <el-button @click="addArticle" type="primary" icon="el-icon-edit">写文章</el-button>
+    </div>
+    <!-- 列表区域 -->
+    <el-card shadow="hover" v-for="(item,index) in dataList" :key="index" class="article-item">
       <div class="title-wapper">
         <div class="title" @click="$emit('listClick',index)">{{item.title}}</div>
       </div>
@@ -17,7 +23,7 @@
         <div class="mr--30">发布时间：{{timeFormat(item.date)}}</div>
         <div>浏览次数：{{item.viewCount}}</div>
       </div>
-    </div>
+    </el-card>
   </div>
 </template>
 
@@ -36,21 +42,54 @@ export default {
   data() {
     return {}
   },
-  methods: {},
+  methods: {
+    /**
+     * @Author: 殷鹏飞
+     * @Date: 2020-03-10 16:14:04
+     * @Description: 写文章按钮被点击
+     */
+    addArticle() {
+      this.$emit('addArticle')
+    },
+  },
 }
 </script>
 
 <style lang="scss">
 #new-article {
+
+  .add-wrapper {
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    background-color: #fff;
+    .add_text {
+      font-size: 16px;
+      line-height: 40px;
+      color: #333;
+    }
+      .el-button--primary {
+        background-color: #FFF3D9;
+        border-color: rgb(248, 226, 181);
+        color: #333;
+        &:hover {
+          background-color: rgb(248, 226, 181);
+        }
+        .el-button--small {
+          padding: 9px 8px;
+        }
+    }
+  }
+
   .article-item {
     margin: 10px 0;
-    padding: 18px;
-    box-sizing: border-box;
     border-radius: 5px;
     background-color: #fff;
     .title-wapper {
       .title {
-        font-size: 22px;
+        font-size: 20px;
         font-weight: 500;
         &:hover {
           cursor: pointer;

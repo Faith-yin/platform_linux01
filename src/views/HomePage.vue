@@ -21,7 +21,7 @@
                     你好，欢迎 {{userInfo.username || '未知用户'}}<i class="el-icon-arrow-down"></i>
                   </span>
                   <el-dropdown-menu slot="dropdown">
-                    <el-dropdown-item command="drawerOpen" icon="el-icon-user-solid">个人信息</el-dropdown-item>
+                    <el-dropdown-item command="personClick" icon="el-icon-user-solid">个人信息</el-dropdown-item>
                     <el-dropdown-item command="myHoard" icon="el-icon-star-on">我的收藏</el-dropdown-item>
                     <el-dropdown-item command="loginOut" icon="el-icon-switch-button">退出登录</el-dropdown-item>
                   </el-dropdown-menu>
@@ -30,8 +30,6 @@
         </div>
         <!-- 顶部导航栏 -->
         <top-nav-menu @handleSelect="selectTabClick" />
-        <!-- 侧滑窗口 -->
-        <Drawer ref="drawerRef" />
         <!-- 主体区域 -->
         <div class="body">
           <!-- 列表容器 -->
@@ -41,10 +39,12 @@
                               @listClick="listClick"></list-information>
             <list-article v-if="selectedTab==2" 
                           :dataList="selectedTab==2&&dataList" 
-                          @listClick="listClick"></list-article>
+                          @listClick="listClick"
+                          @addArticle="routeGo({name: 'AddArticle'})"></list-article>
             <list-video v-if="selectedTab==3" 
                         :dataList="selectedTab==3&&dataList" 
-                        @listClick="listClick"></list-video>
+                        @listClick="listClick"
+                        @addVideo="routeGo({name: 'AddVideo'})"></list-video>
             <list-issues  v-if="selectedTab==4" 
                           :dataList="selectedTab==4&&dataList" 
                           @listClick="listClick"
@@ -79,7 +79,7 @@ export default {
       /**
        * @Author: 殷鹏飞
        * @Date: 2020-02-24 18:42:57
-       * @Description: 个人中心选项被点击
+       * @Description: 我的 被点击
        */   
       handleCommand(val) {
         this[val]()
@@ -87,10 +87,10 @@ export default {
       /**
        * @Author: 殷鹏飞
        * @Date: 2020-02-24 19:35:34
-       * @Description: 侧滑窗口打开
+       * @Description: 个人信息被点击
        */
-      drawerOpen () {
-        this.$refs.drawerRef.drawerMark = true
+      personClick () {
+        this.routeGo({name: 'PersonInfo'})
       },
       /**
        * @Author: 殷鹏飞
