@@ -58,7 +58,8 @@ export default {
         }
         .el-menu-item {
             margin: 0 40px;
-            font-size: 16px;
+            font-size: 18px;
+            font-weight: 500;
         }
     }
 }

@@ -82,7 +82,7 @@ export default class InitAxios {
         axios.defaults.timeout = 10000
         // 请求拦截
         axios.interceptors.request.use(requestFun.bind(this), errorRequestFun)
-        // 相应拦截
+        // 响应拦截
         axios.interceptors.response.use(responseFun.bind(this), errorResponseFun)
     }
 }

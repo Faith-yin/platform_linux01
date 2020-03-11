@@ -128,6 +128,20 @@ const publicApi = {
   },
 
 
+  /**
+   * @Author: 殷鹏飞
+   * @Date: 2020-03-11 17:11:14
+   * @Description: 文件(video,image,audio等)上传服务器 相关接口
+   */ 
+  // 视频上传
+  uploadVideo(model, config) {
+    console.log('参数-->',model);
+    return axios.post(`/uploadFile/uploadVideo`, model, config)
+  }
+
+
+
+
 
 
 }

@@ -171,5 +171,20 @@ export default {
     },
 
 
+  /**
+   * @Author: 殷鹏飞
+   * @Date: 2020-03-11 17:11:14
+   * @Description: 文件(video,image,audio等)上传服务器 相关接口
+   */ 
+  // 视频上传
+  uploadVideo(model) {
+    let config = {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    }
+    return publicApi.uploadVideo(model, config)
+  }
+
   }
 }

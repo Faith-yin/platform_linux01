@@ -148,10 +148,10 @@ export default {
        * @Description: 列表点击回调
        */
       listClickCallBack({data}) {
-        // 将返回的详情 存至 sessionStorage 中
-        sessionStorage.setItem('itemDetail', JSON.stringify(data[0]))
         let {routerName} = this.tabToRouterArr.find(el => el.selectedTab == this.selectedTab)
         this.routeGo({path: `/${routerName}/${data[0].id}`})
+        // 将返回的详情 存至 sessionStorage 中
+        sessionStorage.setItem('itemDetail', JSON.stringify(data[0]))
       },
       /**
        * @Author: 殷鹏飞
