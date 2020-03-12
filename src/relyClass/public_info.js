@@ -74,8 +74,8 @@ export default {
      * @Description: information公告 操作接口
      */
       // 查询全部
-      showAllInformation() {
-        return publicApi.showAllInformation()
+      showAllInformation(model) {
+        return publicApi.showAllInformation(model)
       },
       // 条件查询：按照管理员id查询
       findInformationByAdminId(model) {

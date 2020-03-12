@@ -35,8 +35,8 @@ const publicApi = {
    * @Description: information公告 操作接口
    */
     // 查询全部
-    showAllInformation() {
-      return axios.get(`/information/showAllInformation`)
+    showAllInformation(model) {
+      return axios.post(`/information/showAllInformation`,model)
     },
     // 修改
     updateInformation(model) {

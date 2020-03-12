@@ -32,6 +32,21 @@
                   line-height: 51px;
               }
           }
+          // 搜索
+          .base-search {
+              display: flex;
+              .el-input--prefix {
+                  line-height: 51px;
+                  input {
+                      width: 260px;
+                  }
+              }
+              .btn-box {
+                  margin-left: 5px;
+                  line-height: 50px;
+              }
+          }
+
           // 右侧下拉菜单
           .el-dropdown {
             .userinfo-wrapper {

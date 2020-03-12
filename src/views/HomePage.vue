@@ -8,30 +8,41 @@
         <!-- 顶部信息 -->
         <div class="top-wrapper">
             <div class="header">
-                <!-- 标题区域 -->
-                <div class="title-info">
-                    <img src="@/assets/img/linux-logo.jpg" alt="linux_logo">
-                    <div class="top-title">Linux 管理学习平台</div>
+              <!-- 标题区域 -->
+              <div class="title-info">
+                  <img src="@/assets/img/linux-logo.jpg" alt="linux_logo">
+                  <div class="top-title">Linux 管理学习平台</div>
+              </div>
+              <!-- 搜索框 -->
+              <div class="base-search">
+                <el-input placeholder="搜索感兴趣的资源"
+                          prefix-icon="el-icon-search"
+                          clearable
+                          size="medium"
+                          v-model="searchValue"
+                          @keyup.enter.native="searchClick">
+                </el-input>
+                <div class="btn-box">
+                    <el-button  type="primary"
+                                @click="searchClick"
+                                size="medium">搜索</el-button>
                 </div>
-                <!-- 搜索框 -->
-                <base-search />
-                <!-- 头像 -->
-                <!-- 个人中心 -->
-                <el-dropdown @command="handleCommand">
-                  <div class="userinfo-wrapper">
-                    <div class="photo-wrapper">
-                      <el-avatar :size="50" :src="userInfo.photo" icon='el-icon-user'></el-avatar>
-                    </div>
-                    <span class="el-dropdown-link">
-                      {{userInfo.username || '未知用户'}}<i class="el-icon-arrow-down"></i>
-                    </span>
+              </div>
+              <!-- 个人中心 -->
+              <el-dropdown @command="handleCommand">
+                <div class="userinfo-wrapper">
+                  <div class="photo-wrapper">
+                    <el-avatar :size="50" :src="userInfo.photo" icon='el-icon-user'></el-avatar>
                   </div>
-                  <el-dropdown-menu slot="dropdown">
-                    <el-dropdown-item command="personClick" icon="el-icon-user-solid">个人信息</el-dropdown-item>
-                    <el-dropdown-item command="myHoard" icon="el-icon-star-on">我的收藏</el-dropdown-item>
-                    <el-dropdown-item command="loginOut" icon="el-icon-switch-button">退出登录</el-dropdown-item>
-                  </el-dropdown-menu>
-                </el-dropdown>
+                  <span class="el-dropdown-link">
+                    {{userInfo.username || '未知用户'}}<i class="el-icon-arrow-down"></i>
+                  </span>
+                </div>
+                <el-dropdown-menu slot="dropdown">
+                  <el-dropdown-item command="personClick" icon="el-icon-user-solid">个人信息</el-dropdown-item>
+                  <el-dropdown-item command="loginOut" icon="el-icon-switch-button">退出登录</el-dropdown-item>
+                </el-dropdown-menu>
+              </el-dropdown>
             </div>
         </div>
         <!-- 顶部导航栏 -->
@@ -73,6 +84,8 @@ export default {
     mixins: [publicInfo, publicClass],
     data() {
         return {
+          //输入框值
+          searchValue: null,
           // 用户信息
           userInfo: {},
           // 当前tabbar选择项,默认是[最新公告]
@@ -99,14 +112,6 @@ export default {
         this.routeGo({name: 'PersonInfo'})
       },
       /**
-       * @Author: 殷鹏飞
-       * @Date: 2020-02-25 15:33:53
-       * @Description: 我的收藏被点击
-       */
-      myHoard() {
-
-      },
-      /**
        * @author: 殷鹏飞
        * @Date: 2019-12-27 19:08:27
        * @information: 退出登录点击
@@ -121,6 +126,14 @@ export default {
           sessionStorage.clear()
           this.routeGo({name: 'Login'})
         }).catch(_ => {})
+      },
+      /**
+       * @Author: 殷鹏飞
+       * @Date: 2020-03-12 20:49:59
+       * @Description: 搜索被点击
+       */
+      searchClick() {
+        this.fetchListData()
       },
       /**
        * @Author: 殷鹏飞
@@ -164,10 +177,11 @@ export default {
        * @Description: 获取页面列表信息
        */
       fetchListData() {
+        let {searchValue} = this
         let {portMethod} = this.tabToRouterArr.find(el => el.selectedTab == this.selectedTab)
         // 请求模板参数
         let methodModel = {
-          pMethod: this[portMethod](),
+          pMethod: this[portMethod]({value: searchValue}),
           callBack: 'fetchListDataCallBack',
         }
         this.methodQuery(methodModel)
