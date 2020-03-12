@@ -134,10 +134,9 @@ export default {
         let {updatePortMethod} = this.tabToRouterArr.find(el => el.selectedTab == this.selectedTab)
         let {id, viewCount} = this.dataList[val]
         viewCount ++  // 浏览次数加一
-        // 请求参数
+        // 请求模板参数
         let methodModel = {
-          pMethod: updatePortMethod,
-          params: {id, viewCount},
+          pMethod: this[updatePortMethod]({id, viewCount}),
           callBack: 'listClickCallBack',
         }
         this.methodQuery(methodModel)
@@ -160,9 +159,9 @@ export default {
        */
       fetchListData() {
         let {portMethod} = this.tabToRouterArr.find(el => el.selectedTab == this.selectedTab)
-        // 请求参数
+        // 请求模板参数
         let methodModel = {
-          pMethod: portMethod,
+          pMethod: this[portMethod](),
           callBack: 'fetchListDataCallBack',
         }
         this.methodQuery(methodModel)

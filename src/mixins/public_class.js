@@ -25,7 +25,7 @@ export default {
             let method = typeof pMethod == 'string' ? this[pMethod](params) : pMethod
             // 操作promise
             method.then(async res => {
-                message && Message.success(message || '操作成功')
+                message && Message({showClose: true, message: message || '操作成功', type: 'success'})
                 // 回调方法
                 callBack && await this[callBack](res)
             }).finally(_ => {
@@ -70,7 +70,7 @@ export default {
               if(typeof(el) === 'object') return this.formRequired({arr: el})
               return false
             })
-            !mark && Message.warning(msg ? msg : '请完善必填信息')
+            !mark &&  Message({showClose: true, message: msg || '请完善必填信息', type: 'warning'})
             return mark
         },
         /**

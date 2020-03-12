@@ -99,11 +99,11 @@ export default {
       let mark = this.formRequired({arr: form, msg: '请输入用户名和密码'})
       if(!mark) return;
       // 两次密码一致性校验
-      if(password !== repassword) return Message.warning('两次密码输入不一致')
-      // 请求参数
+      if(password !== repassword) return Message({showClose: true, message: '两次密码输入不一致', type: 'warning'})
+      // 请求模板参数
       let methodModel = {
-        pMethod: 'addUser',
-        params: {username, password},
+        pMethod: this.addUser({username, password}),
+        message: '注册成功，请登录',
         callBack: 'onRegisterCallBack',
       }
       this.methodQuery(methodModel)
@@ -114,11 +114,7 @@ export default {
      * @Description: 注册点击回调
      */
     onRegisterCallBack(res) {
-      this.$message({
-        showClose: true,
-        message: '注册成功，请登录',
-        type: 'success',
-      })
+      // 路由跳转
       this.routeGo({name:'Login'})
     },
   }

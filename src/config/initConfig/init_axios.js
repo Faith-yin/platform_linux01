@@ -40,7 +40,7 @@ export default class InitAxios {
         if (isSuccess) {
             return Promise.resolve(data)
         }
-        Message.error(message || '返回状态码错误')
+        Message({showClose: true, message: message || '返回状态码错误', type: 'error'})
         return Promise.reject(data)
     }
     /*
@@ -57,7 +57,7 @@ export default class InitAxios {
     * @information: 请求失败回调
     */
     errorRequestFun() {
-        Message.error('请求连接失败')
+        Message({showClose: true, message: '请求连接失败', type: 'error'})
         return Promise.reject()
     }
     /**
@@ -66,7 +66,7 @@ export default class InitAxios {
      * @Description: 响应失败回调
      */
     errorResponseFun() {
-      Message.error('响应连接失败')
+      Message({showClose: true, message: '响应连接失败', type: 'error'})
       return Promise.reject()
     }
     /*

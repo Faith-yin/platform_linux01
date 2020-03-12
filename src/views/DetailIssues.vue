@@ -101,16 +101,17 @@ export default {
           type: 'warning'
         })
       }
+      // 请求参数
       let model = {
         issueId: this.data.id,
         userId: this.userInfo.id,
         content: commentValue,
         date: this.timeFormat(new Date()),
       }
-      // 请求参数
+      // 请求模板参数
       let methodModel = {
-        pMethod: 'addIssuesComment',
-        params: model,
+        pMethod: this.addIssuesComment(model),
+        message: '添加成功',
         callBack: 'addCommentCallBack',
       }
       this.methodQuery(methodModel)
@@ -121,11 +122,6 @@ export default {
      * @Description: 添加评论回调
      */
     addCommentCallBack(res) {
-      this.$message({
-        showClose: true,
-        message: '添加成功',
-        type: 'success'
-      })
       // 清空输入框值
       this.commentValue = null
       // 重新加载列表数据以更新列表
@@ -137,10 +133,9 @@ export default {
      * @Description: 加载评论列表
      */
     fetchCommentList() {
-      // 请求参数
+      // 请求模板参数
       let methodModel = {
-        pMethod: 'findIssuesCommentByIssuesId',
-        params: this.data.id,
+        pMethod: this.findIssuesCommentByIssuesId(this.data.id),
         callBack: 'fetchCommentListCallBack',
       }
       this.methodQuery(methodModel)

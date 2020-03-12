@@ -46,10 +46,13 @@
                         size="small"
                         v-if="showBtnMark"
                         type="primary">选取文件</el-button>
+            <p class="msg-info">
+              <i class="el-icon-warning"></i>视频文件大小不能超过1000MB
+            </p>
           </el-upload>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="submitForm()">提交</el-button>
+          <el-button type="primary" @click="checkForm()">提交</el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -104,42 +107,82 @@ export default {
     },
     /**
      * @Author: 殷鹏飞
+     * @Date: 2020-03-12 11:22:13
+     * @Description: 校验表单
+     */
+    checkForm() {
+      let {title, content} = this.videoForm
+      // 表单校验
+      let mark = this.formRequired({arr: {title, content}})
+      if(!mark)return;
+      // 视频文件大小校验(<1000MB || < 1048576000B)
+      if(this.fileData.size > 1048576000)return Message({showClose: true, message: '视频文件大小不能大于1000MB', type: 'warning'})
+      // 调用上传文件至服务器
+      this.uploadFile()
+    },
+    /**
+     * @Author: 殷鹏飞
      * @Date: 2020-03-11 17:45:53
      * @Description: 上传文件至服务器
      */
-    async uploadFile() {
+    uploadFile() {
       // 创建表单对象
       let formData = new FormData()
       // 触发组件自带方法
       this.$refs.uploadRef.submit()
       // 将文件数据转成表单对象
       formData.append('file', this.fileData)
-      let res = await this.uploadVideo(formData)
-      console.log('上传成功了-->',res);
+      // 请求模板参数
+      let methodModel = {
+        pMethod: this.uploadVideo(formData),
+        callBack: 'uploadFileCallBack',
+      }
+      this.methodQuery(methodModel)
     },
-
-
-
-
-
-
-
-
+    /**
+     * @Author: 殷鹏飞
+     * @Date: 2020-03-12 09:48:44
+     * @Description: 上传文件至服务器回调
+     */
+    uploadFileCallBack({data}) {
+      this.videoForm.link = data
+      // 调用提交表单
+      this.submitForm()
+    },
     /**
      * @Author: 殷鹏飞
      * @Date: 2020-03-10 18:12:47
      * @Description: 提交
      */
     submitForm() {
-      this.uploadFile()
+      // 从 sessionStorage 中获取用户id
+      let {id} = JSON.parse(sessionStorage.getItem('userInfo'))
+      // 请求参数
+      let model = {
+        userId: id,
+        date: this.timeFormat(new Date()),
+        checkStatus: 2,
+        ...this.videoForm,
+      }
+      // 请求模板参数
+      let methodModel = {
+        pMethod: this.addVideo(model),
+        message: '提交成功, 审核通过后将会显示',
+        callBack: 'submitFormCallBack',
+      }
+      this.methodQuery(methodModel)
     },
     /**
      * @Author: 殷鹏飞
      * @Date: 2020-03-10 18:13:02
      * @Description: 提交回调
      */
-    submitFormCallBack() {
-
+    submitFormCallBack(res) {
+      // 清空表单
+      let arr = ['title', 'content', 'link']
+      arr.forEach(el => {this.videoForm[el] = null})
+      this.$refs.uploadRef.clearFiles()
+      this.showBtnMark = true
     },
   },
 }

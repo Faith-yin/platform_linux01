@@ -97,18 +97,20 @@ export default {
      * @Description: 提交表单
      */
     submitForm() {
-      // 校验必填项
       let {personForm, userInfo} = this
       let {username, password, sex, birthday, description} = personForm
       let {id} = userInfo
+      // 校验必填项
       let mark = this.formRequired({arr: [username, password], msg: '请输入表单必填项'})
       if(!mark)return;
-      let model = {id, username, password, sex, birthday, description}
-      userInfo.username === username && (model.username = undefined)
       // 请求参数
+      let model = {id, username, password, sex, birthday, description}
+      // 若未修改名称，则入参去掉 username
+      userInfo.username === username && (model.username = undefined)
+      // 请求模板参数
       let methodModel = {
-        pMethod: 'updateUserById',
-        params: model,
+        pMethod: this.updateUserById(model),
+        message: '提交保存成功',
         callBack: 'submitFormCallBack',
       }
       this.methodQuery(methodModel)
@@ -122,11 +124,6 @@ export default {
       let {userInfo, personForm} = this
       // 将保存后的数据存至本地 sessionStorage 中
       sessionStorage.setItem('userInfo', JSON.stringify({...userInfo, ...personForm}))
-      this.$message({
-        showClose: true,
-        message: '提交保存成功',
-        type: 'success',
-      })
     }, 
   },
   mounted() {

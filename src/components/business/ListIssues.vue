@@ -76,15 +76,16 @@ export default {
       }
       // 从sessionStorage 获取用户信息
       let {id} = JSON.parse(sessionStorage.getItem('userInfo'))
+      // 请求参数
       let model = {
         title: issueValue,
         userId: id,
         date: this.timeFormat(new Date()),
       }
-      // 请求参数
+      // 请求模板参数
       let methodModel = {
-        pMethod: 'addIssues',
-        params: model,
+        pMethod: this.addIssues(model),
+        message: '添加成功',
         callBack: 'addIssueCallBack',
       }
       this.methodQuery(methodModel)
@@ -95,11 +96,6 @@ export default {
      * @Description: 添加issue回调事件
      */
     addIssueCallBack(res) {
-      this.$message({
-        showClose: true,
-        message: '添加成功',
-        type: 'success'
-      })
       // 清空输入框值
       this.issueValue = null
       // 重新加载列表数据以更新列表

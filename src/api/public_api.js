@@ -135,7 +135,6 @@ const publicApi = {
    */ 
   // 视频上传
   uploadVideo(model, config) {
-    console.log('参数-->',model);
     return axios.post(`/uploadFile/uploadVideo`, model, config)
   }
 

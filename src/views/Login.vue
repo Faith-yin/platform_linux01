@@ -79,10 +79,10 @@ export default {
           // 表单校验
           let mark = this.formRequired({arr: form, msg: '请输入用户名和密码'})
           if(!mark) return;
-          // 请求参数
+          // 请求模板参数
           let methodModel = {
-            pMethod: 'findUserByNameAndPassword',
-            params: form,
+            pMethod: this.findUserByNameAndPassword(form),
+            message: '登录成功',
             callBack: 'onSubmitCallBack',
           }
           this.methodQuery(methodModel)
@@ -93,16 +93,10 @@ export default {
          * @Description: 登录点击回调事件
          */
         onSubmitCallBack({data}) {
-          if(data && data.length) { // 已注册
-            this.$message({
-              showClose: true,
-              message: '登录成功',
-              type: 'success'
-            });
-            // 将账户信息存至 sessionStorage 中
-            sessionStorage.setItem('userInfo', JSON.stringify(data[0]))
-            this.routeGo({name: 'HomePage'})
-          }
+          // 将账户信息存至 sessionStorage 中
+          sessionStorage.setItem('userInfo', JSON.stringify(data[0]))
+          // 路由跳转
+          this.routeGo({name: 'HomePage'})
         },
         /**
          * @author: 殷鹏飞

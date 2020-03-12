@@ -79,17 +79,17 @@ export default {
       if(!mark)return;
       // 从 sessionStorage 中获取用户id
       let {id} = JSON.parse(sessionStorage.getItem('userInfo'))
+      // 请求参数
       let model = {
-        title: this.articleForm.title,
-        content: this.articleForm.content,
         userId: id,
         date: this.timeFormat(new Date()),
         checkStatus: 2,
+        ...this.articleForm,
       }
-      // 请求参数
+      // 请求模板参数
       let methodModel = {
-        pMethod: 'addArticle',
-        params: model,
+        pMethod: this.addArticle(model),
+        message: '提交成功, 审核通过后将会显示',
         callBack: 'submitFormCallBack',
       }
       this.methodQuery(methodModel)
@@ -103,11 +103,6 @@ export default {
       // 清空表单
       let arr = ['title', 'content']
       arr.forEach(el => {this.articleForm[el] = null})
-      this.$message({
-        showClose: true,
-        message: '提交成功, 审核通过后将会显示',
-        type: 'success',
-      })
     },
   },
   mounted() {}
