@@ -44,15 +44,24 @@
       <!-- 评论列表区域 -->
       <div class="content-wrapper">
         <div v-if="!commentList.length" class="empty-content">暂无评论</div>
-        <div class="content-item" v-for="(item,index) in commentList" :key="index">
+        <div  class="content-item" 
+              v-for="(item,index) in commentList.slice((currentPage-1)*pageSize, currentPage*pageSize)" 
+              :key="index">
           <div class="content-title">
-            <div class="content-title_num">#{{index+1}}楼&nbsp;&nbsp;</div>
+            <div class="content-title_num">#{{(currentPage-1)*pageSize+(index+1)}}楼&nbsp;&nbsp;</div>
             <div class="content-title_username">{{item.username || '未知用户'}}</div>
           </div>
           <div class="content_content">{{item.content}}</div>
           <div class="content_date">{{timeFormat(item.date)}}</div>
         </div>
       </div>
+      <!-- 分页 -->
+      <el-pagination  background
+                      layout="total, prev, pager, next"
+                      :total="commentList.length"
+                      :page-size="pageSize"
+                      :current-page="currentPage"
+                      @current-change='handleCurrentChange'></el-pagination>
     </div>
   </div>
 </template>
@@ -73,6 +82,10 @@ export default {
       data: {},
       // 评论列表
       commentList: [],
+      // 当前页码
+      currentPage: 1,
+      // 每页条数
+      pageSize: 10
     }
   },
   methods: {
@@ -147,6 +160,14 @@ export default {
      */
     fetchCommentListCallBack({data}) {
       this.commentList = data
+    },
+    /**
+     * @Author: 殷鹏飞
+     * @Date: 2020-03-12 13:43:12
+     * @Description: 当前页改变时
+     */
+    handleCurrentChange(val) {
+      this.currentPage = val
     },
   },
   mounted() {
