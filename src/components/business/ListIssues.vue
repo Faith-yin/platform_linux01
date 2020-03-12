@@ -15,7 +15,9 @@
                   placeholder="我有新的问题..."
                   v-model="issueValue"></el-input>
       </div>
-      <el-button @click="addIssue" type="primary" size="small" icon="el-icon-circle-plus-outline">提问Issue</el-button>
+      <div class="btn-wrapper">
+        <el-button @click="addIssue" type="primary" size="small" icon="el-icon-circle-plus-outline">提问Issue</el-button>
+      </div>
     </div>
     <!-- issues列表 -->
     <el-card shadow="hover" v-for="(item,index) in dataList" :key="index" class="issue-item">
@@ -115,15 +117,16 @@ export default {
     .form_input {
       padding-bottom: 10px;
     }
-    .el-button--primary {
-      background-color: #FFF3D9;
-      border-color: rgb(248, 226, 181);
-      color: #333;
-      &:hover {
-        background-color: rgb(248, 226, 181);
-      }
-      .el-button--small {
-        padding: 9px 8px;
+    .btn-wrapper {
+      text-align: right;
+      .el-button--primary {
+        padding: 10px 8px;
+        background-color: #FFF3D9;
+        border-color: rgb(248, 226, 181);
+        color: #333;
+        &:hover {
+          background-color: rgb(248, 226, 181);
+        }
       }
     }
   }

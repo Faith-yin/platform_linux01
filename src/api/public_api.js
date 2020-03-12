@@ -136,7 +136,11 @@ const publicApi = {
   // 视频上传
   uploadVideo(model, config) {
     return axios.post(`/uploadFile/uploadVideo`, model, config)
-  }
+  },
+  // 图片上传 
+  uploadImg(model, config) {
+    return axios.post(`/uploadFile/uploadImg`, model, config)
+  },
 
 
 

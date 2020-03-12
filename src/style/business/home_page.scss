@@ -34,10 +34,17 @@
           }
           // 右侧下拉菜单
           .el-dropdown {
-            .el-dropdown-link {
-              color: #409EFF;
-              line-height: 51.5px;
+            .userinfo-wrapper {
+              display: flex;
               cursor: pointer;
+              .photo-wrapper {
+                margin-right: 10px;
+              }
+              .el-dropdown-link {
+                font-size: 16px;
+                color: #409EFF;
+                line-height: 51.5px;
+              }
             }
           }
       }

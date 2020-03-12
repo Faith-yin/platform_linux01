@@ -15,11 +15,17 @@
                 </div>
                 <!-- 搜索框 -->
                 <base-search />
+                <!-- 头像 -->
                 <!-- 个人中心 -->
                 <el-dropdown @command="handleCommand">
-                  <span class="el-dropdown-link">
-                    你好，欢迎 {{userInfo.username || '未知用户'}}<i class="el-icon-arrow-down"></i>
-                  </span>
+                  <div class="userinfo-wrapper">
+                    <div class="photo-wrapper">
+                      <el-avatar :size="50" :src="userInfo.photo" icon='el-icon-user'></el-avatar>
+                    </div>
+                    <span class="el-dropdown-link">
+                      {{userInfo.username || '未知用户'}}<i class="el-icon-arrow-down"></i>
+                    </span>
+                  </div>
                   <el-dropdown-menu slot="dropdown">
                     <el-dropdown-item command="personClick" icon="el-icon-user-solid">个人信息</el-dropdown-item>
                     <el-dropdown-item command="myHoard" icon="el-icon-star-on">我的收藏</el-dropdown-item>

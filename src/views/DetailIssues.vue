@@ -39,7 +39,10 @@
                     placeholder="我有新的想法..."
                     v-model="commentValue"></el-input>
         </div>
+        <div class="btn-wrapper">
         <el-button @click="addComment" type="primary" size="small" icon="el-icon-edit">发表评论</el-button>
+
+        </div>
       </div>
       <!-- 评论列表区域 -->
       <div class="content-wrapper">
@@ -47,12 +50,14 @@
         <div  class="content-item" 
               v-for="(item,index) in commentList.slice((currentPage-1)*pageSize, currentPage*pageSize)" 
               :key="index">
-          <div class="content-title">
-            <div class="content-title_num">#{{(currentPage-1)*pageSize+(index+1)}}楼&nbsp;&nbsp;</div>
-            <div class="content-title_username">{{item.username || '未知用户'}}</div>
+          <div class="content-photo">
+            <el-avatar :size="50" icon='el-icon-user' :src="item.photo"></el-avatar>
           </div>
-          <div class="content_content">{{item.content}}</div>
-          <div class="content_date">{{timeFormat(item.date)}}</div>
+          <div class="content-right">
+            <div class="content-title_username">{{item.username || '未知用户'}}</div>
+            <div class="content_content">{{item.content}}</div>
+            <div class="content_date">{{timeFormat(item.date)}}</div>
+          </div>
         </div>
       </div>
       <!-- 分页 -->

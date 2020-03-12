@@ -184,6 +184,15 @@ export default {
       }
     }
     return publicApi.uploadVideo(model, config)
+  },
+  // 图片上传
+  uploadImg(model) {
+    let config = {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    }
+    return publicApi.uploadImg(model, config)
   }
 
   }

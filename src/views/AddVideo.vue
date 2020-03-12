@@ -38,17 +38,13 @@
                       ref="uploadRef"
                       action="" 
                       :http-request="addFile"
-                      :before-remove="beforeRemove"
-                      :limit=1
+                      :limit='1'
                       accept=".mp4"> 
             <el-button  class="video-btn"
                         slot="trigger"
                         size="small"
-                        v-if="showBtnMark"
                         type="primary">选取文件</el-button>
-            <p class="msg-info">
-              <i class="el-icon-warning"></i>视频文件大小不能超过1000MB
-            </p>
+            <p class="msg-info">视频文件大小不能超过1000MB</p>
           </el-upload>
         </el-form-item>
         <el-form-item>
@@ -73,8 +69,6 @@ export default {
         content: null,
         link: null,
       },
-      // 显示[选取文件]按钮标志
-      showBtnMark: true, 
       // 文件数据
       fileData: {},
     }
@@ -94,16 +88,7 @@ export default {
      * @Description: 添加文件
      */
     addFile(val) {
-      this.showBtnMark = false
       this.fileData = val.file
-    },
-    /**
-     * @Author: 殷鹏飞
-     * @Date: 2020-03-11 17:49:45
-     * @Description: 去掉文件
-     */
-    beforeRemove() {
-      this.showBtnMark = true
     },
     /**
      * @Author: 殷鹏飞
@@ -182,7 +167,6 @@ export default {
       let arr = ['title', 'content', 'link']
       arr.forEach(el => {this.videoForm[el] = null})
       this.$refs.uploadRef.clearFiles()
-      this.showBtnMark = true
     },
   },
 }

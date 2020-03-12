@@ -19,6 +19,19 @@
     <!-- 表单组件 -->
     <div class="form-wrapper">
       <el-form label-position="right" label-width="80px" :model="personForm" ref="ruleForm">
+        <!-- 头像上传 -->
+        <el-form-item label="用户头像"> 
+          <el-upload  class="upload-demo"
+                      ref="uploadRef"
+                      action=""
+                      :limit='1'
+                      accept=".jpg, .png"
+                      :http-request="addFile">
+                      <el-button size="small" type="primary">点击上传</el-button>
+                      <div slot="tip" class="el-upload__tip">只能上传jpg/png文件</div>
+          </el-upload>
+        </el-form-item>
+        <!-- 用户信息 -->
         <el-form-item label="用户名称" required>
           <el-input v-model="personForm.username" 
                     show-word-limit
@@ -55,7 +68,7 @@
                     maxlength=240></el-input>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="submitForm()">提交</el-button>
+          <el-button type="primary" @click="uploadFile()">提交</el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -77,9 +90,12 @@ export default {
         sex: null,
         birthday: null,
         description: null,
+        photo: null
       },
       // sessionStorage 中的用户信息
       userInfo: {},
+      // 文件数据
+      fileData: {},
     }
   },
   methods: {
@@ -93,18 +109,55 @@ export default {
     },
     /**
      * @Author: 殷鹏飞
+     * @Date: 2020-03-12 15:31:37
+     * @Description: 添加图片文件
+     */
+    addFile(val) {
+      this.fileData = val.file
+    },
+    /**
+     * @Author: 殷鹏飞
+     * @Date: 2020-03-12 16:11:09
+     * @Description: 上传文件至服务器
+     */
+    uploadFile() {
+      // 创建表单对象
+      let formData = new FormData()
+      // 触发组件自带方法
+      this.$refs.uploadRef.submit()
+      // 将文件数据转成表单对象
+      formData.append('file', this.fileData)
+      // 请求模板参数
+      let methodModel = {
+        pMethod: this.uploadImg(formData),
+        callBack: 'uploadFileCallBack',
+      }
+      this.methodQuery(methodModel)
+    },
+    /**
+     * @Author: 殷鹏飞
+     * @Date: 2020-03-12 16:11:17
+     * @Description: 上传文件至服务器回调
+     */
+    uploadFileCallBack({data}) {
+      this.personForm.photo = data
+      // 调用提交表单
+      this.submitForm()
+    },
+    /**
+     * @Author: 殷鹏飞
      * @Date: 2020-02-25 14:48:01
      * @Description: 提交表单
      */
     submitForm() {
       let {personForm, userInfo} = this
-      let {username, password, sex, birthday, description} = personForm
+      let {username, password, sex, birthday, description, photo} = personForm
       let {id} = userInfo
       // 校验必填项
       let mark = this.formRequired({arr: [username, password], msg: '请输入表单必填项'})
       if(!mark)return;
       // 请求参数
-      let model = {id, username, password, sex, birthday, description}
+      let model = {id, username, password, sex, birthday, description, photo}
       // 若未修改名称，则入参去掉 username
       userInfo.username === username && (model.username = undefined)
       // 请求模板参数
@@ -130,7 +183,7 @@ export default {
     // 从 sessionStorage 中获取用户信息
     this.userInfo = JSON.parse(sessionStorage.getItem('userInfo'))
     let arr = ['username', 'password', 'sex', 'birthday', 'description']
-    // 将已有的个人信息防至表单中
+    // 将已有的个人信息放至表单中
     arr.forEach(el => {
       this.userInfo[el] && (this.personForm[el] = this.userInfo[el])
     })
