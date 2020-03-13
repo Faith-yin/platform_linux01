@@ -41,8 +41,6 @@
                             placeholder="请再次输入密码" 
                             v-model="form.repassword"/>
             </el-form-item>
-
-            
             <!-- 按钮 -->
             <el-form-item class="btn-box">
                 <el-button  size="medium"
@@ -73,7 +71,7 @@ export default {
       // 表单验证，需要在 el-form-item 元素中增加 prop 属性
       rules: {
         username: [
-          {required: true, message: '账号不可为空', trigger: 'blur'}
+          {required: true, message: '名称不可为空', trigger: 'blur'}
         ],
         password: [
           {required: true, message: '密码不可为空', trigger: 'blur'}
@@ -82,8 +80,6 @@ export default {
           {required: true, message: '密码不可为空', trigger: 'blur'}
         ],
       },
-      // 对话框显示和隐藏
-      dialogVisible: false,
     }
   },
   methods: {
