@@ -181,6 +181,11 @@ export default {
       this.$refs.uploadRef.clearFiles()
     },
   },
+  mounted() {
+    // 判断是否登录状态
+    let mark = this.judgeLogin()
+    if(!mark) return this.routeGo({name: 'Login'})
+  },
 }
 </script>
 

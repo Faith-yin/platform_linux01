@@ -203,6 +203,9 @@ export default {
     }, 
   },
   mounted() {
+    // 判断是否登录状态
+    let mark = this.judgeLogin()
+    if(!mark) return this.routeGo({name: 'Login'})
     // 从 sessionStorage 中获取用户信息
     this.userInfo = JSON.parse(sessionStorage.getItem('userInfo'))
     let arr = ['username', 'password', 'sex', 'birthday', 'description', 'photo']

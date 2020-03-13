@@ -4,9 +4,11 @@
  * @information: 业务层
  */
 import publicApi from '@/api/public_api.js'
+import publicClass from '@/mixins/public_class.js'
+import { Message } from 'element-ui'
 
 export default {
-  mixins: [],
+  mixins: [publicClass],
   data() {
     return {
       // 配置对象
@@ -45,6 +47,23 @@ export default {
     }
   },
   methods: {
+  /**
+   * @Author: 殷鹏飞
+   * @Date: 2020-03-13 13:39:04
+   * @Description: 判断是否登录状态
+   */
+  judgeLogin() {
+    // 从 sessionStorage 中获取用户信息
+    let userInfo = JSON.parse(sessionStorage.getItem('userInfo'))
+    // 如果没有用户信息，即未登录
+    if(!userInfo || !Object.keys(userInfo).length) {
+      Message({showClose: true, message: '请用户登录', type: 'warning'})
+      return false
+    }
+    return true
+  },
+
+
     /**
      * @Author: 殷鹏飞
      * @Date: 2020-03-08 09:39:17

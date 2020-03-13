@@ -52,6 +52,9 @@ export default {
     },
   },
   mounted() {
+    // 判断是否登录状态
+    let mark = this.judgeLogin()
+    if(!mark) return this.routeGo({name: 'Login'})
     // 从 sessionStorage 中获取详情信息
     this.data = JSON.parse(sessionStorage.getItem('itemDetail'))
   },

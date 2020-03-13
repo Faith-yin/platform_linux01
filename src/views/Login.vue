@@ -30,7 +30,8 @@
                             show-password
                             prefix-icon="el-icon-lock"
                             placeholder="请输入密码"
-                            v-model="form.password"/>
+                            v-model="form.password"
+                            @keyup.enter.native="onSubmit"/>
             </el-form-item>
             <!-- 按钮 -->
             <el-form-item class="btn-box">

@@ -105,7 +105,11 @@ export default {
       arr.forEach(el => {this.articleForm[el] = null})
     },
   },
-  mounted() {}
+  mounted() {
+    // 判断是否登录状态
+    let mark = this.judgeLogin()
+    if(!mark) return this.routeGo({name: 'Login'})
+  }
 }
 </script>
 
