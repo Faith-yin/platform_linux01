@@ -30,6 +30,10 @@
         <div>浏览次数：{{item.viewCount}}</div>
       </div>
     </el-card>
+    <!-- 无数据时 -->
+    <div v-if="!dataList.length" class="nodata-wrapper">
+      暂无数据
+    </div>
   </div>
 </template>
 
@@ -152,6 +156,13 @@ export default {
       font-size: 14px;
       color: #999;
     }
+  }
+  //无数据时
+  .nodata-wrapper {
+    font-size: 17px;
+    color: #333;
+    text-align: center;
+    line-height: 300px;
   }
 }
 </style>

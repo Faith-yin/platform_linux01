@@ -93,8 +93,8 @@ export default {
      * @Description: article文章 操作接口
      */    
       // 查询全部
-      showAllArticle() {
-        return publicApi.showAllArticle()
+      showAllArticle(model) {
+        return publicApi.showAllArticle(model)
       },
       // 添加
       addArticle(model) {
@@ -116,8 +116,8 @@ export default {
      * @Description: video 操作接口
      */    
     // 查询全部
-    showAllVideo() {
-      return publicApi.showAllVideo()
+    showAllVideo(model) {
+      return publicApi.showAllVideo(model)
     },
     // 修改
     updateVideo(model) {
@@ -131,8 +131,8 @@ export default {
      * @Description: issues 操作接口
      */  
     // 查询全部
-    showAllIssues() {
-      return publicApi.showAllIssues()
+    showAllIssues(model) {
+      return publicApi.showAllIssues(model)
     },
     // 添加
     addIssues(model) {
@@ -162,8 +162,8 @@ export default {
      * @Description: outsidelink 操作接口
      */  
     // 查询全部
-    showAllOutsidelink() {
-      return publicApi.showAllOutsidelink()
+    showAllOutsidelink(model) {
+      return publicApi.showAllOutsidelink(model)
     },
     // 修改
     updateOutsidelink(model) {

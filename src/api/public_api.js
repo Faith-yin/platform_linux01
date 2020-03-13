@@ -50,8 +50,8 @@ const publicApi = {
    * @Description: article文章 操作接口
    */    
     // 查询全部
-    showAllArticle() {
-      return axios.get(`/article/showAllArticle`)
+    showAllArticle(model) {
+      return axios.post(`/article/showAllArticle`,model)
     },
     // 添加
     addArticle(model) {
@@ -69,8 +69,8 @@ const publicApi = {
    * @Description: video 操作接口
    */    
   // 查询全部
-  showAllVideo() {
-    return axios.get(`/video/showAllVideo`)
+  showAllVideo(model) {
+    return axios.post(`/video/showAllVideo`,model)
   },
   // 修改
   updateVideo(model) {
@@ -88,8 +88,8 @@ const publicApi = {
    * @Description: issues 操作接口
    */  
   // 查询全部
-  showAllIssues() {
-    return axios.get(`/issues/showAllIssues`)
+  showAllIssues(model) {
+    return axios.post(`/issues/showAllIssues`,model)
   },
   // 添加
   addIssues(model) {
@@ -119,8 +119,8 @@ const publicApi = {
    * @Description: outsidelink 操作接口
    */  
   // 查询全部
-  showAllOutsidelink() {
-    return axios.get(`/outsidelink/showAllOutsidelink`)
+  showAllOutsidelink(model) {
+    return axios.post(`/outsidelink/showAllOutsidelink`,model)
   },
   // 修改
   updateOutsidelink(model) {
