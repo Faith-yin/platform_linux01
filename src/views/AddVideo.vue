@@ -37,6 +37,7 @@
           <el-upload  class="avatar-uploader el-upload--text"
                       ref="uploadRef"
                       action="" 
+                      :before-remove="beforeRemove"
                       :http-request="addFile"
                       :limit='1'
                       accept=".mp4"> 
@@ -58,6 +59,7 @@
 <script>
 import publicInfo from '@/relyClass/public_info.js'
 import publicClass from '@/mixins/public_class.js'
+import {Message} from 'element-ui'
 
 export default {
   mixins: [publicInfo, publicClass],
@@ -92,6 +94,14 @@ export default {
     },
     /**
      * @Author: 殷鹏飞
+     * @Date: 2020-03-13 11:55:34
+     * @Description: 删除文件
+     */
+    beforeRemove() { 
+      this.fileData = {}
+    },
+    /**
+     * @Author: 殷鹏飞
      * @Date: 2020-03-12 11:22:13
      * @Description: 校验表单
      */
@@ -100,6 +110,8 @@ export default {
       // 表单校验
       let mark = this.formRequired({arr: {title, content}})
       if(!mark)return;
+      // 校验是否添加视频文件
+      if(!Object.keys(this.fileData).length)return Message({showClose: true, message: '请添加视频文件', type: 'warning'})
       // 视频文件大小校验(<1000MB || < 1048576000B)
       if(this.fileData.size > 1048576000)return Message({showClose: true, message: '视频文件大小不能大于1000MB', type: 'warning'})
       // 调用上传文件至服务器

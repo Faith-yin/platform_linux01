@@ -25,7 +25,9 @@
                       ref="uploadRef"
                       action=""
                       :limit='1'
+                      :file-list='fileList'
                       accept=".jpg, .png"
+                      :before-remove="beforeRemove"
                       :http-request="addFile">
                       <el-button size="small" type="primary">点击上传</el-button>
                       <div slot="tip" class="el-upload__tip">只能上传jpg/png文件</div>
@@ -68,7 +70,7 @@
                     maxlength=240></el-input>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="uploadFile()">提交</el-button>
+          <el-button type="primary" @click="checkFile()">提交</el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -90,12 +92,14 @@ export default {
         sex: null,
         birthday: null,
         description: null,
-        photo: null
+        photo: null,
       },
       // sessionStorage 中的用户信息
       userInfo: {},
       // 文件数据
       fileData: {},
+      // 文件列表
+      fileList: [],
     }
   },
   methods: {
@@ -114,6 +118,25 @@ export default {
      */
     addFile(val) {
       this.fileData = val.file
+    },
+    /**
+     * @Author: 殷鹏飞
+     * @Date: 2020-03-13 11:44:06
+     * @Description: 删除文件
+     */
+    beforeRemove() {
+      this.fileData = {}
+      this.personForm.photo = ''
+    },
+    /**
+     * @Author: 殷鹏飞
+     * @Date: 2020-03-13 11:36:07
+     * @Description: 核验是否有添加文件
+     */
+    checkFile() {
+      // 如果没有上传文件 or 没有修改文件，直接提交表单
+      if(!Object.keys(this.fileData).length)return this.submitForm()
+      return this.uploadFile()
     },
     /**
      * @Author: 殷鹏飞
@@ -182,11 +205,13 @@ export default {
   mounted() {
     // 从 sessionStorage 中获取用户信息
     this.userInfo = JSON.parse(sessionStorage.getItem('userInfo'))
-    let arr = ['username', 'password', 'sex', 'birthday', 'description']
+    let arr = ['username', 'password', 'sex', 'birthday', 'description', 'photo']
     // 将已有的个人信息放至表单中
     arr.forEach(el => {
       this.userInfo[el] && (this.personForm[el] = this.userInfo[el])
     })
+    // 若存在头像，则放至列表中以显示
+    this.userInfo.photo && this.fileList.push({name: 'photo', url: this.userInfo.photo})
   },
 }
 </script>
