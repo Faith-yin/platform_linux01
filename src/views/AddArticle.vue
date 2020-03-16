@@ -21,7 +21,10 @@
     </div>
     <!-- 主体区域 -->
     <div class="body-wrapper">
-      <el-form label-position="right" label-width="80px" :model="articleForm" ref="ruleForm">
+      <el-form  label-position="right" 
+                label-width="80px" 
+                :model="articleForm" 
+                ref="ruleForm">
         <el-form-item label="题目" required>
           <el-input v-model="articleForm.title" 
                     show-word-limit

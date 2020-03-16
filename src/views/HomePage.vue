@@ -11,7 +11,7 @@
               <!-- 标题区域 -->
               <div class="title-info">
                   <img src="@/assets/img/linux-logo.jpg" alt="linux_logo">
-                  <div class="top-title">Linux 管理学习平台</div>
+                  <div class="top-title">Linux 学习平台</div>
               </div>
               <!-- 搜索框 -->
               <div class="base-search">
@@ -120,7 +120,8 @@ export default {
         this.$confirm('确定退出登录？', '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
-          type: 'warning'
+          type: 'warning',
+          closeOnClickModal: false,
         }).then(_ => {
           // 清空 sessionStorage 中存放的信息
           sessionStorage.clear()

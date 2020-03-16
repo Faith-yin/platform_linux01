@@ -12,7 +12,7 @@
                     class="login-box">
             <!-- 标题 -->
             <div class="login-title-box">
-                <h3 class="login-title">Linux系统管理学习平台</h3>
+                <h3 class="login-title">Linux系统学习平台</h3>
                 <div class="login-info color--gray">请登录</div>
             </div>
             <!-- 账号 -->
@@ -20,7 +20,7 @@
                 <el-input   type="text" 
                             maxlength="12"
                             prefix-icon="el-icon-user"
-                            placeholder="请输入名称" 
+                            placeholder="输入名称" 
                             v-model="form.username"/>
             </el-form-item>
             <!-- 密码 -->
@@ -29,7 +29,7 @@
                             maxlength="12"
                             show-password
                             prefix-icon="el-icon-lock"
-                            placeholder="请输入密码"
+                            placeholder="输入密码"
                             v-model="form.password"
                             @keyup.enter.native="onSubmit"/>
             </el-form-item>
@@ -78,15 +78,15 @@ export default {
         onSubmit() {
           let {form} = this
           // 表单校验
-          let mark = this.formRequired({arr: form, msg: '请输入用户名和密码'})
-          if(!mark) return;
-          // 请求模板参数
-          let methodModel = {
-            pMethod: this.findUserByNameAndPassword(form),
-            message: '登录成功',
-            callBack: 'onSubmitCallBack',
-          }
-          this.methodQuery(methodModel)
+          this.$refs.loginForm.validate().then(() => {
+            // 请求模板参数
+            let methodModel = {
+              pMethod: this.findUserByNameAndPassword(form),
+              message: '登录成功',
+              callBack: 'onSubmitCallBack',
+            }
+            this.methodQuery(methodModel)
+          })
         },
         /**
          * @Author: 殷鹏飞

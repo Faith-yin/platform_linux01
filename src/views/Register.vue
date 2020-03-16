@@ -12,33 +12,35 @@
                     class="login-box">
             <!-- 标题 -->
             <div class="login-title-box">
-                <h3 class="login-title">Linux系统管理学习平台</h3>
+                <h3 class="login-title">Linux系统学习平台</h3>
                 <div class="login-info color--gray">请注册</div>
             </div>
             <!-- 账号 -->
             <el-form-item prop="username">
                 <el-input   type="text" 
                             maxlength="12"
+                            minlength="2"
                             prefix-icon="el-icon-user"
-                            placeholder="请输入名称" 
+                            placeholder="输入名称(2 到 12 个字符)" 
                             v-model="form.username"/>
             </el-form-item>
             <!-- 密码 -->
             <el-form-item prop="password">
                 <el-input   type="password" 
                             maxlength="12"
+                            minlength="6"
                             show-password
                             prefix-icon="el-icon-lock"
-                            placeholder="请输入密码"
+                            placeholder="输入密码(6 到 12 个字符)"
                             v-model="form.password"/>
             </el-form-item>
             <!-- 再次密码 -->
-            <el-form-item prop="password">
+            <el-form-item prop="repassword">
                 <el-input   type="password" 
                             maxlength="12"
                             show-password
                             prefix-icon="el-icon-lock"
-                            placeholder="请再次输入密码" 
+                            placeholder="再次输入密码" 
                             v-model="form.repassword"/>
             </el-form-item>
             <!-- 按钮 -->
@@ -61,6 +63,10 @@ import { Message } from 'element-ui'
 export default {
   mixins: [publicInfo, publicClass],
   data() {
+    let validatePass = (rule, value, callback) => {
+      if(value !== this.form.password) callback(new Error('两次输入密码不一致'))
+      callback()
+    }
     return {
       // 表单内容
       form: {
@@ -71,13 +77,16 @@ export default {
       // 表单验证，需要在 el-form-item 元素中增加 prop 属性
       rules: {
         username: [
-          {required: true, message: '名称不可为空', trigger: 'blur'}
+          {required: true, message: '名称不可为空', trigger: 'blur'},
+          { min: 2, max: 12, message: '长度在 2 到 12 个字符', trigger: 'blur' }
         ],
         password: [
-          {required: true, message: '密码不可为空', trigger: 'blur'}
+          {required: true, message: '密码不可为空', trigger: 'blur'},
+          { min: 6, max: 12, message: '长度在 6 到 12 个字符', trigger: 'blur' }
         ],
         repassword: [
-          {required: true, message: '密码不可为空', trigger: 'blur'}
+          {required: true, message: '请再次输入密码', trigger: 'blur'},
+          {validator: validatePass, trigger: 'blur'}
         ],
       },
     }
@@ -89,20 +98,18 @@ export default {
      * @information: 注册点击
      */
     onRegister() {
-      let {form} = this
-      let {username, password, repassword} = form
+      let {username, password, repassword} = this.form
       // 表单校验
-      let mark = this.formRequired({arr: form, msg: '请输入用户名和密码'})
-      if(!mark) return;
-      // 两次密码一致性校验
-      if(password !== repassword) return Message({showClose: true, message: '两次密码输入不一致', type: 'warning'})
-      // 请求模板参数
-      let methodModel = {
-        pMethod: this.addUser({username, password}),
-        message: '注册成功，请登录',
-        callBack: 'onRegisterCallBack',
-      }
-      this.methodQuery(methodModel)
+      this.$refs.registerForm.validate().then(() => {
+        // 请求模板参数
+        let methodModel = {
+          pMethod: this.addUser({username, password}),
+          message: '注册成功，请登录',
+          callBack: 'onRegisterCallBack',
+        }
+        this.methodQuery(methodModel)
+      })
+      
     },
     /**
      * @Author: 殷鹏飞
