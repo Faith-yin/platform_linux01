@@ -22,7 +22,8 @@
                             minlength="2"
                             prefix-icon="el-icon-user"
                             placeholder="输入名称(2 到 12 个字符)" 
-                            v-model="form.username"/>
+                            v-model="form.username"
+                            @keyup.enter.native="onRegister"/>
             </el-form-item>
             <!-- 密码 -->
             <el-form-item prop="password">
@@ -32,7 +33,8 @@
                             show-password
                             prefix-icon="el-icon-lock"
                             placeholder="输入密码(6 到 12 个字符)"
-                            v-model="form.password"/>
+                            v-model="form.password"
+                            @keyup.enter.native="onRegister"/>
             </el-form-item>
             <!-- 再次密码 -->
             <el-form-item prop="repassword">
@@ -41,7 +43,8 @@
                             show-password
                             prefix-icon="el-icon-lock"
                             placeholder="再次输入密码" 
-                            v-model="form.repassword"/>
+                            v-model="form.repassword"
+                            @keyup.enter.native="onRegister"/>
             </el-form-item>
             <!-- 按钮 -->
             <el-form-item class="btn-box">
@@ -63,6 +66,7 @@ import { Message } from 'element-ui'
 export default {
   mixins: [publicInfo, publicClass],
   data() {
+    // 再次输入密码校验方式
     let validatePass = (rule, value, callback) => {
       if(value !== this.form.password) callback(new Error('两次输入密码不一致'))
       callback()

@@ -21,7 +21,8 @@
                             maxlength="12"
                             prefix-icon="el-icon-user"
                             placeholder="输入名称" 
-                            v-model="form.username"/>
+                            v-model="form.username"
+                            @keyup.enter.native="onSubmit"/>
             </el-form-item>
             <!-- 密码 -->
             <el-form-item prop="password">
@@ -55,8 +56,8 @@ export default {
         return {
             // 表单内容
             form: {
-                username: '',
-                password: '',
+                username: null,
+                password: null,
             },
             // 表单验证，需要在 el-form-item 元素中增加 prop 属性
             rules: {
@@ -76,12 +77,11 @@ export default {
          * @information: 登录点击
          */
         onSubmit() {
-          let {form} = this
           // 表单校验
           this.$refs.loginForm.validate().then(() => {
             // 请求模板参数
             let methodModel = {
-              pMethod: this.findUserByNameAndPassword(form),
+              pMethod: this.findUserByNameAndPassword(this.form),
               message: '登录成功',
               callBack: 'onSubmitCallBack',
             }

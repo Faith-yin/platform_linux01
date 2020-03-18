@@ -18,7 +18,10 @@
     </div>
     <!-- 表单组件 -->
     <div class="form-wrapper">
-      <el-form label-position="right" label-width="80px" :model="personForm" ref="ruleForm">
+      <el-form  label-position="right" 
+                label-width="80px" :model="personForm" 
+                ref="ruleForm"
+                :rules="rules" >
         <!-- 头像上传 -->
         <el-form-item label="用户头像"> 
           <el-upload  class="upload-demo"
@@ -34,15 +37,15 @@
           </el-upload>
         </el-form-item>
         <!-- 用户信息 -->
-        <el-form-item label="用户名称" required>
+        <el-form-item label="用户名称" prop="username" required>
           <el-input v-model="personForm.username" 
                     show-word-limit
                     maxlength=12
-                    placeholder='请输入名称, 最长12位(必填)' 
+                    placeholder='请输入名称, 2~12字符(必填)' 
                     clearable></el-input>
         </el-form-item>
-        <el-form-item label="用户密码" required>
-          <el-input placeholder='请输入密码, 最长12位(必填) '
+        <el-form-item label="用户密码" prop="password" required>
+          <el-input placeholder='请输入密码, 6~12字符(必填) '
                     v-model="personForm.password"
                     show-word-limit
                     maxlength=12 
@@ -100,6 +103,17 @@ export default {
       fileData: {},
       // 文件列表
       fileList: [],
+      // 表单验证，需要在 el-form-item 元素中增加 prop 属性
+      rules: {
+        username: [
+          {required: true, message: '名称不可为空', trigger: 'blur'},
+          { min: 2, max: 12, message: '长度在 2 到 12 个字符', trigger: 'blur' }
+        ],
+        password: [
+          {required: true, message: '密码不可为空', trigger: 'blur'},
+          { min: 6, max: 12, message: '长度在 6 到 12 个字符', trigger: 'blur' }
+        ],
+      },
     }
   },
   methods: {
@@ -177,19 +191,20 @@ export default {
       let {username, password, sex, birthday, description, photo} = personForm
       let {id} = userInfo
       // 校验必填项
-      let mark = this.formRequired({arr: [username, password], msg: '请输入表单必填项'})
-      if(!mark)return;
-      // 请求参数
-      let model = {id, username, password, sex, birthday, description, photo}
-      // 若未修改名称，则入参去掉 username
-      userInfo.username === username && (model.username = undefined)
-      // 请求模板参数
-      let methodModel = {
-        pMethod: this.updateUserById(model),
-        message: '提交保存成功',
-        callBack: 'submitFormCallBack',
-      }
-      this.methodQuery(methodModel)
+      this.$refs.registerForm.validate().then(() => {
+        // 请求参数
+        let model = {id, username, password, sex, birthday, description, photo}
+        // 若未修改名称，则入参去掉 username
+        userInfo.username === username && (model.username = undefined)
+        // 请求模板参数
+        let methodModel = {
+          pMethod: this.updateUserById(model),
+          message: '提交保存成功',
+          callBack: 'submitFormCallBack',
+        }
+        this.methodQuery(methodModel)
+      })
+
     },
     /**
      * @Author: 殷鹏飞

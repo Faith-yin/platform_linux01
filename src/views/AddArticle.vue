@@ -4,7 +4,7 @@
  * @Description: 写文章 页面
  *
   字段说明：
-    checkStatus 审核标志：0未通过，1通过，2审核中(默认)
+    checkStatus 审核标志：3未通过，2通过，1审核中(默认)
 -->
 <template>
   <div id="add-article">
@@ -86,7 +86,7 @@ export default {
       let model = {
         userId: id,
         date: this.timeFormat(new Date()),
-        checkStatus: 2,
+        checkStatus: 1,
         ...this.articleForm,
       }
       // 请求模板参数
