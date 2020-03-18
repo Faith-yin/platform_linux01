@@ -87,7 +87,11 @@ export default {
      * @Description: 返回事件
      */
     goBack() {
-      this.routeGo({name: 'HomePage'})
+      let routeModel = {
+        name: 'HomePage',
+        params: { backTab: '3' }
+      }
+      this.routeGo(routeModel)
     },
     /**
      * @Author: 殷鹏飞
