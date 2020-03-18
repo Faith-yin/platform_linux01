@@ -1,6 +1,7 @@
 #detail-article {
   min-height: 100vh;
   background-color: #F4F5F5;
+  padding-bottom: 20px;
   .top-wrapper {
     width: 100%;
     padding: 10px 0;
@@ -69,6 +70,15 @@
       padding: 20px 30px 50px;
       line-height: 45px;
       text-indent: 35px;
+      white-space: pre-wrap;
     }
+  }
+
+  // 底部区域
+  .footer {
+    margin-top: 50px;
+    font-size: 12px;
+    text-align: center;
+    color: #999;
   }
 }

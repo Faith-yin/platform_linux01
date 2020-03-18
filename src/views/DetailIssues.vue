@@ -41,7 +41,6 @@
         </div>
         <div class="btn-wrapper">
         <el-button @click="addComment" type="primary" size="small" icon="el-icon-edit">发表评论</el-button>
-
         </div>
       </div>
       <!-- 评论列表区域 -->
@@ -68,6 +67,8 @@
                       :current-page="currentPage"
                       @current-change='handleCurrentChange'></el-pagination>
     </div>
+    <!-- 底部区域 -->
+    <div class="footer">—— 系统由 Vue+Java+ElementUI 驱动 ——</div>
   </div>
 </template>
 
@@ -100,9 +101,11 @@ export default {
      * @Description: 返回事件
      */
     goBack() {
-      this.routeGo({
-        name: 'HomePage'
-      })
+      let routeModel = {
+        name: 'HomePage',
+        params: { backTab: '4' }
+      }
+      this.routeGo(routeModel)
     },
     /**
      * @Author: 殷鹏飞

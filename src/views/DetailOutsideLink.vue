@@ -23,11 +23,13 @@
         <div class="one-info mr--30"><i class="el-icon-user"></i> {{data.username}}</div>
         <div><i class="el-icon-view"></i> {{data.viewCount}}次浏览</div>
       </div>
-      <div class="content-wrapper">{{data.content}}</div>
+      <div class="content-wrapper" v-html="data.content">{{data.content}}</div>
       <div class="link-wrapper">
         <el-link :href="data.link" icon="el-icon-position" type="success">点击跳转学习链接...</el-link>
       </div>
     </div>
+    <!-- 底部区域 -->
+    <div class="footer">—— 系统由 Vue+Java+ElementUI 驱动 ——</div>
   </div>
 </template>
 
@@ -50,9 +52,11 @@ export default {
      * @Description: 返回事件
      */
     goBack() {
-      this.routeGo({
-        name: 'HomePage'
-      })
+      let routeModel = {
+        name: 'HomePage',
+        params: { backTab: '5' }
+      }
+      this.routeGo(routeModel)
     },
   },
   mounted() {

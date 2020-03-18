@@ -43,7 +43,8 @@
         </el-form-item>
       </el-form>
     </div>
-
+    <!-- 底部区域 -->
+    <div class="footer">—— 系统由 Vue+Java+ElementUI 驱动 ——</div>
   </div>
 </template>
 

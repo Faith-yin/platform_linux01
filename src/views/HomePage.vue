@@ -46,7 +46,8 @@
             </div>
         </div>
         <!-- 顶部导航栏 -->
-        <top-nav-menu @handleSelect="selectTabClick" />
+        <top-nav-menu @handleSelect="selectTabClick"
+                      :selectedTab='selectedTab'/>
         <!-- 主体区域 -->
         <div class="body">
           <!-- 列表容器 -->
@@ -89,7 +90,7 @@ export default {
           // 用户信息
           userInfo: {},
           // 当前tabbar选择项,默认是[最新公告]
-          selectedTab: 1,
+          selectedTab: '1',
           // 数据列表
           dataList: [],
         }
@@ -202,6 +203,9 @@ export default {
       if(!mark) return this.routeGo({name: 'Login'})
       // 从 sessionStorage 中获取用户信息
       this.userInfo = JSON.parse(sessionStorage.getItem('userInfo'))
+      // 若从tab中返回来的: 还留在相应tab
+      let {backTab} = this.$route.params
+      if(backTab) this.selectedTab = backTab
       this.fetchListData()
     }
 }

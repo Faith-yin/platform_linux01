@@ -1,6 +1,7 @@
 #person_info {
   min-height: 100vh;
   background-color: #F4F5F5;
+  padding-bottom: 20px;
   .top-wrapper {
     width: 100%;
     padding: 10px 0;
@@ -78,9 +79,14 @@
       height: 178px;
       display: block;
     }
+  }
 
-
-
+  // 底部区域
+  .footer {
+    margin-top: 50px;
+    font-size: 12px;
+    text-align: center;
+    color: #999;
   }
 
 }

@@ -6,7 +6,7 @@
 <template>
     <div id="top-nav-menu">
         <div class="top-nav-menu-main">
-            <el-menu    default-active="1"
+            <el-menu    :default-active="selectedTab"
                         class="el-menu-demo"
                         mode="horizontal"
                         @select="handleSelect"
@@ -27,6 +27,12 @@
 import publicClass from '@/mixins/public_class.js'
 
 export default {
+    props: {
+      selectedTab: {
+        type: String,
+        default: '1',
+      }
+    },
     mixins: [publicClass],
     data() {
       return {
