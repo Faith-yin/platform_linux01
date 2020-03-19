@@ -23,7 +23,7 @@
         <div class="one-info mr--30"><i class="el-icon-user"></i> {{data.username}}</div>
         <div><i class="el-icon-view"></i> {{data.viewCount}}次浏览</div>
       </div>
-      <div class="content-wrapper" v-html="data.content">{{data.content}}</div>
+      <div class="content-wrapper" v-html="data.content"></div>
       <div class="link-wrapper">
         <el-link :href="data.link" icon="el-icon-position" type="success">点击跳转学习链接...</el-link>
       </div>

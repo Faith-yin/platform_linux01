@@ -24,7 +24,7 @@
         <div class="mr--30"><i class="el-icon-date"></i> {{timeFormat(data.date)}}</div>
         <div><i class="el-icon-view"></i> {{data.viewCount}}次浏览</div>
       </div>
-      <div class="content-wrapper" v-html="data.content">{{data.content}}</div>
+      <div class="content-wrapper" v-html="data.content"></div>
     </div>
     <!-- 底部区域 -->
     <div class="footer">—— 系统由 Vue+Java+ElementUI 驱动 ——</div>
