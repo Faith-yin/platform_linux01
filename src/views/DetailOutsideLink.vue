@@ -9,7 +9,7 @@
     <div class="top-wrapper">
       <div class="title-info">
         <img src="@/assets/img/linux-logo.jpg" alt="linux_logo">
-        <div class="top-title">Linux 管理学习平台</div>
+        <div class="top-title">Linux 学习平台</div>
       </div>
     </div>
     <!-- 页头 -->

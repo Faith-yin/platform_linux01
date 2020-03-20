@@ -53,6 +53,10 @@ const publicApi = {
     showAllArticle(model) {
       return axios.post(`/article/showAllArticle`,model)
     },
+    // 条件查询：按照用户id查询 所有状态的
+    findArticleByUserId(model) {
+      return axios.post(`/article/findArticleByUserId`,model)
+    },
     // 添加
     addArticle(model) {
       return axios.post(`/article/addArticle`,model)
@@ -72,6 +76,10 @@ const publicApi = {
   showAllVideo(model) {
     return axios.post(`/video/showAllVideo`,model)
   },
+  // 条件查询：按照user id查询 所有状态的
+  findVideoByUserId(model) {
+    return axios.post(`/video/findVideoByUserId`,model)
+  },
   // 修改
   updateVideo(model) {
     return axios.put(`/video/updateVideo`,model)
@@ -90,6 +98,10 @@ const publicApi = {
   // 查询全部
   showAllIssues(model) {
     return axios.post(`/issues/showAllIssues`,model)
+  },
+  // 条件查询：根据提出者用户id查询
+  findIssuesByUserId(model) {
+    return axios.post(`/issues/findIssuesByUserId`,model)
   },
   // 添加
   addIssues(model) {

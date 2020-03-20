@@ -1,7 +1,8 @@
-#detail-outsidelink {
+#person-publish {
   min-height: 100vh;
-  padding-bottom: 20px;
   background-color: #F4F5F5;
+  padding-bottom: 20px;
+
   .top-wrapper {
     width: 100%;
     padding: 10px 0;
@@ -51,30 +52,63 @@
     margin: 0 auto;
     border-radius: 5px;
     background-color: #fff;
-    .title-wrapper {
-      box-sizing: border-box;
-      padding: 20px 0 30px;
-      text-align: center;
-      font-size: 30px;
-      font-weight: 500;
+    box-sizing: border-box;
+    padding: 30px 10px 50px;
+    .el-tabs {
+      height: 100% !important;
+      min-height: 100vh;
     }
-    .info-wrapper {
-      display: flex;
-      justify-content: center;
-      color: #999;
-      font-size: 15px;
+    .el-tabs__item.is-active {
+      color: #ff6700;
     }
-    .content-wrapper {
-      box-sizing: border-box;
-      padding: 20px 30px 50px;
-      line-height: 45px;
-      text-indent: 35px;
+    .el-tabs__active-bar {
+      background-color: #ff6700;
     }
-    .link-wrapper {
-      box-sizing: border-box;
-      padding: 20px 30px 50px;
+    .el-tabs__item:hover {
+      color: #ff6700;
+      cursor: pointer;
     }
+
+    .right-wrapper {
+      .item-wrapper {
+        padding: 0 10px;
+        box-sizing: border-box;
+        .display--flex {
+          display: flex;
+          justify-content: space-between;
+          .title-info {
+            display: flex;
+            &:hover {
+              color: #ff6700;
+              cursor: pointer;
+            }
+            .title-desc {
+              width: 50px;
+              font-size: 16px;
+              color: #999;
+            }
+            .title-text {
+              width: 900px;
+            }
+          }
+        }
+        .date-info {
+          font-size: 14px;
+          color: #999;
+        }
+        .el-divider { //分割线
+          display: block;
+          height: 1px;
+          width: 100%;
+          margin: 20px 0;
+        }
+      }
+    }
+
   }
+
+
+
 
   // 底部区域
   .footer {
@@ -83,4 +117,5 @@
     text-align: center;
     color: #999;
   }
+
 }

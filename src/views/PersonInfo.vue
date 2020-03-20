@@ -9,7 +9,7 @@
     <div class="top-wrapper">
       <div class="title-info">
         <img src="@/assets/img/linux-logo.jpg" alt="linux_logo">
-        <div class="top-title">Linux 管理学习平台</div>
+        <div class="top-title">Linux 学习平台</div>
       </div>
     </div>
     <!-- 页头 -->
@@ -193,7 +193,7 @@ export default {
       let {username, password, sex, birthday, description, photo} = personForm
       let {id} = userInfo
       // 校验必填项
-      this.$refs.registerForm.validate().then(() => {
+      this.$refs.ruleForm.validate().then(() => {
         // 请求参数
         let model = {id, username, password, sex, birthday, description, photo}
         // 若未修改名称，则入参去掉 username

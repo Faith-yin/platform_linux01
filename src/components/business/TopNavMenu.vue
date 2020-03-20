@@ -12,7 +12,7 @@
                         @select="handleSelect"
                         background-color="#FFF3D9"
                         text-color="#333"
-                        active-text-color="#409EFF">
+                        active-text-color="#ff6700">
                 <el-menu-item index=1>最新公告</el-menu-item>
                 <el-menu-item index=2>最新文章</el-menu-item>
                 <el-menu-item index=3>课程资源</el-menu-item>

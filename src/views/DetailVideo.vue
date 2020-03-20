@@ -9,7 +9,7 @@
     <div class="top-wrapper">
       <div class="title-info">
         <img src="@/assets/img/linux-logo.jpg" alt="linux_logo">
-        <div class="top-title">Linux 管理学习平台</div>
+        <div class="top-title">Linux 学习平台</div>
       </div>
     </div>
     <!-- 页头 -->
@@ -53,6 +53,12 @@ export default {
      * @Description: 返回事件
      */
     goBack() {
+      let {type} = this.$route.query
+      // 如果从[我的发布]跳转过来，还回那去..
+      if(type && type == 'getBack') {
+        this.routeGo({name: 'PersonPublish'})
+        return;
+      }
       let routeModel = {
         name: 'HomePage',
         params: { backTab: '3' }

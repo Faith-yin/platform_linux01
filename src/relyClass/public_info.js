@@ -11,7 +11,7 @@ export default {
   mixins: [publicClass],
   data() {
     return {
-      // 配置对象
+      // 主页面tab 配置对象
       tabToRouterArr: [
         {
           selectedTab: 1, 
@@ -43,10 +43,32 @@ export default {
           portMethod: 'showAllOutsidelink',
           updatePortMethod: 'updateOutsidelink',
         },
-      ]
+      ],
+      // 个人发布页面tab 配置对象
+      publishTabPortMethods: [
+        {
+          selectedTab: 1,
+          portMethod: 'findArticleByUserId',
+          routerName: 'DetailArticle',
+        },
+        {
+          selectedTab: 2,
+          portMethod: 'findVideoByUserId',
+          routerName: 'DetailVideo',
+        },
+        {
+          selectedTab: 3,
+          portMethod: 'findIssuesByUserId',
+          routerName: 'DetailIssues',
+        },
+      ],
     }
   },
   methods: {
+
+// -------------------------业务方法----------------------------------------
+
+
   /**
    * @Author: 殷鹏飞
    * @Date: 2020-03-13 13:39:04
@@ -62,6 +84,22 @@ export default {
     }
     return true
   },
+
+    /**
+     * @Author: 殷鹏飞
+     * @Date: 2020-03-17 11:29:42
+     * @Description: 审核状态格式化： 数字-->文字
+     */    
+    checkStatusFormatter(value) {
+      let str =''
+      if(value == 3) str = '未通过'
+      if(value == 2) str = '已通过'
+      if(value == 1) str = '审核中'
+      return str
+    },
+
+
+// -------------------------接口方法----------------------------------------
 
 
     /**
@@ -115,6 +153,10 @@ export default {
       showAllArticle(model) {
         return publicApi.showAllArticle(model)
       },
+      // 条件查询：按照用户id查询 所有状态的
+      findArticleByUserId(model) {
+        return publicApi.findArticleByUserId(model)
+      },
       // 添加
       addArticle(model) {
         return publicApi.addArticle(model)
@@ -138,6 +180,10 @@ export default {
     showAllVideo(model) {
       return publicApi.showAllVideo(model)
     },
+    // 条件查询：按照user id查询 所有状态的
+    findVideoByUserId(model) {
+      return publicApi.findVideoByUserId(model)
+    },
     // 修改
     updateVideo(model) {
       return publicApi.updateVideo(model)
@@ -152,6 +198,10 @@ export default {
     // 查询全部
     showAllIssues(model) {
       return publicApi.showAllIssues(model)
+    },
+    // 条件查询：根据提出者用户id查询
+    findIssuesByUserId(model) {
+      return publicApi.findIssuesByUserId(model)
     },
     // 添加
     addIssues(model) {

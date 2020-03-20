@@ -39,7 +39,8 @@
                   </span>
                 </div>
                 <el-dropdown-menu slot="dropdown">
-                  <el-dropdown-item command="personClick" icon="el-icon-user-solid">个人信息</el-dropdown-item>
+                  <el-dropdown-item command="personClick" icon="el-icon-user">个人信息</el-dropdown-item>
+                  <el-dropdown-item command="publishClick" icon="el-icon-position">我的发布</el-dropdown-item>
                   <el-dropdown-item command="loginOut" icon="el-icon-switch-button">退出登录</el-dropdown-item>
                 </el-dropdown-menu>
               </el-dropdown>
@@ -111,6 +112,14 @@ export default {
        */
       personClick () {
         this.routeGo({name: 'PersonInfo'})
+      },
+      /**
+       * @Author: 殷鹏飞
+       * @Date: 2020-03-19 13:51:16
+       * @Description: 我的发布
+       */
+      publishClick() {
+        this.routeGo({name: 'PersonPublish'})
       },
       /**
        * @author: 殷鹏飞

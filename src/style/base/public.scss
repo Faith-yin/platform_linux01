@@ -5,6 +5,13 @@
   list-style-type: none;
 }
 
+// 文字省略...
+.font-hidden {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 
 // element加载图标
 .el-icon-loading {

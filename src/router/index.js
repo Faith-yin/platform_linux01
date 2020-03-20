@@ -57,6 +57,11 @@ export default new Router({
       component: () => import('@/views/PersonInfo')
     },
     {
+      path: '/PersonPublish', //我的发布页面
+      name: 'PersonPublish',
+      component: () => import('@/views/PersonPublish')
+    },
+    {
       path: '/AddArticle', //写文章页面
       name: 'AddArticle',
       component: () => import('@/views/AddArticle')
