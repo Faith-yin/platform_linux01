@@ -4,16 +4,24 @@
  * @information: 登录页面
  */
 #login {
+    width: 100%;
+    height: 100vh;
+    background: url('~@/assets/img/bgimg.jpg') no-repeat 0 0;
+    overflow: auto;
+    background-size: cover;
+
     // 表单
     .login-box {
         border: 1px solid #DCDFE6;
-        width: 600px;
+        width: 500px;
         margin: 150px auto;
         padding: 70px 70px 55px;
-        border-radius: 5px;
-        -webkit-border-radius: 5px;
-        -moz-border-radius: 5px;
+        border-radius: 20px;
+        // -webkit-border-radius: 20px;
+        // -moz-border-radius: 20px;
         box-shadow: 0 0 20px #9ca1aa;
+        background-color: #fff;
+        opacity: 0.8;
     }
     // 标题区域
     .login-title-box {
@@ -27,6 +35,10 @@
         // 登录注册提示信息
         .login-info {
             padding-bottom: 20px;
+            color: #999;
+            span {
+                color: #ff6700;
+            }
         }
     }
     // 按钮盒子
