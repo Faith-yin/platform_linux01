@@ -25,7 +25,7 @@
       </div>
       <div class="content-wrapper" v-html="data.content"></div>
       <div class="link-wrapper">
-        <el-link :href="data.link" icon="el-icon-position" type="success">点击跳转学习链接...</el-link>
+        <el-link :href="data.link" target="_blank" icon="el-icon-position" type="success">点击跳转学习链接...</el-link>
       </div>
     </div>
     <!-- 底部区域 -->
