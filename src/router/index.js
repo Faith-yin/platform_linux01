@@ -71,5 +71,10 @@ export default new Router({
       name: 'AddVideo',
       component: () => import('@/views/AddVideo')
     },
+    {
+      path: '*', //404
+      name: '404',
+      component: () => import('@/views/404')
+    },
   ]
 })
