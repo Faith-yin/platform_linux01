@@ -21,7 +21,7 @@
                             maxlength="12"
                             minlength="2"
                             prefix-icon="el-icon-user"
-                            placeholder="输入名称(2 ~ 12 个字符)" 
+                            placeholder="输入名称(4 ~ 12 个字符)" 
                             v-model="form.username"
                             @keyup.enter.native="onRegister"/>
             </el-form-item>
@@ -99,7 +99,7 @@ export default {
       rules: {
         username: [
           {required: true, message: '名称不可为空', trigger: 'blur'},
-          { min: 2, max: 12, message: '长度在 2 到 12 个字符', trigger: 'blur' }
+          { min: 4, max: 12, message: '长度在 4 到 12 个字符', trigger: 'blur' }
         ],
         password: [
           {required: true, message: '密码不可为空', trigger: 'blur'},
