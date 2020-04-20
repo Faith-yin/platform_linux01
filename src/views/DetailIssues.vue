@@ -33,8 +33,8 @@
         <div class="form_username">{{userInfo.username || '未知用户'}}：</div>
         <div class="form_input">
           <el-input type="textarea"
-                    rows=3
-                    maxlength=240
+                    rows=5
+                    maxlength=500
                     show-word-limit
                     placeholder="我有新的想法..."
                     v-model="commentValue"></el-input>

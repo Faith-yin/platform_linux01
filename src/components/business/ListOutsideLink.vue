@@ -10,7 +10,7 @@
         <div class="title" @click="$emit('listClick',index)">{{item.title}}</div>
       </div>
       <div class="content-wrapper">
-        <div class="content">{{item.content}}</div>
+        <div class="content font-hidden">{{item.content}}</div>
       </div>
       <div class="bottom-wrapper">
         <div class="mr--30">添加者：{{item.username}}</div>
