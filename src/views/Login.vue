@@ -12,7 +12,7 @@
                     class="login-box">
             <!-- 标题 -->
             <div class="login-title-box">
-                <h3 class="login-title">Linux系统学习平台</h3>
+                <h3 class="login-title">Linux系统管理学习平台</h3>
                 <div class="login-info color--gray">请<span> 用户 </span>登录</div>
             </div>
             <!-- 账号 -->

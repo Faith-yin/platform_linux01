@@ -11,7 +11,7 @@
               <!-- 标题区域 -->
               <div class="title-info">
                   <img src="@/assets/img/linux-logo.jpg" alt="linux_logo">
-                  <div class="top-title">Linux 学习平台</div>
+                  <div class="top-title">Linux系统管理学习平台</div>
               </div>
               <!-- 搜索框 -->
               <div class="base-search">
